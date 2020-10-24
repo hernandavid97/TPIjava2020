@@ -48,4 +48,46 @@ public class DataUsuario {
 		
 		return p;
 	}
+	
+	public int newUser(Usuario u) {
+		PreparedStatement stmt= null;
+		ResultSet keyResultSet=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().
+					prepareStatement(
+							"insert into usuario(usuario,nombre,apellido,tipo_doc,nro_doc,password,email,is_adoptante,is_donante,localidad) values(?,?,?,?,?,?,?,?,?,?)",
+							PreparedStatement.RETURN_GENERATED_KEYS
+							);
+			stmt.setString(1, u.getUsuario());
+			stmt.setString(2, u.getNombre());
+			stmt.setString(3, u.getApellido());
+			stmt.setString(4, u.getTipoDoc());
+			stmt.setString(5, u.getNroDoc());
+			stmt.setString(6, u.getPassword());
+			stmt.setString(7, u.getEmail());
+			stmt.setBoolean(8, u.getAdoptante());
+			stmt.setBoolean(9, u.getDonante());
+			stmt.setInt(10, u.getLocalidad().getId());
+			stmt.executeUpdate();
+			
+			keyResultSet=stmt.getGeneratedKeys();
+            if(keyResultSet!=null && keyResultSet.next()){
+                u.setId(keyResultSet.getInt(1));
+            }
+
+			
+		}  catch (SQLException e) {
+            e.printStackTrace();
+		} finally {
+            try {
+                if(keyResultSet!=null)keyResultSet.close();
+                if(stmt!=null)stmt.close();
+                DbConnector.getInstancia().releaseConn();
+            } catch (SQLException e) {
+            	e.printStackTrace();
+            }
+		}
+		System.out.println("id creada " + u.getId());
+		return u.getId();
+    }
 }

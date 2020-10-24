@@ -1,13 +1,44 @@
 package data;
 
-import java.sql.PreparedStatement;
+import java.sql.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import entities.Usuario;
 import entities.Localidad;
 
 public class DataLocalidad {
+	
+	public Localidad getByNombre(String nom) {
+		Localidad l = null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select id_localidad,nombre_localidad,provincia from localidad where nombre_localidad=?"
+					);
+			stmt.setString(1, nom);
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()) {
+				l=new Localidad();
+				l.setNombre(rs.getNString("nombre_localidad"));
+				l.setId(rs.getInt("id_localidad"));
+				l.setProvincia(rs.getString("provincia"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return l;
+	}
 	
 	public void setLocalidad(Usuario us) {
 		PreparedStatement stmt=null;
