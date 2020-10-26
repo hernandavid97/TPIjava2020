@@ -55,7 +55,7 @@ public class DataUsuario {
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"insert into usuario(usuario,nombre,apellido,tipo_doc,nro_doc,password,email,is_adoptante,is_donante,localidad) values(?,?,?,?,?,?,?,?,?,?)",
+							"insert into usuario(usuario,nombre,apellido,tipo_doc,nro_doc,password,email,is_adoptante,is_donante,localidad,domicilio) values(?,?,?,?,?,?,?,?,?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setString(1, u.getUsuario());
@@ -68,6 +68,7 @@ public class DataUsuario {
 			stmt.setBoolean(8, u.getAdoptante());
 			stmt.setBoolean(9, u.getDonante());
 			stmt.setInt(10, u.getLocalidad().getId());
+			stmt.setString(11, u.getDomicilio());
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();

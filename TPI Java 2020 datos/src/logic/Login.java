@@ -19,7 +19,7 @@ public class Login {
 	}
 	
 	public String validaRegistro(Usuario u) {
-		if (du.getByUser(u) != null) {
+		if (du.getByUser(u) == null) {
 			u.setId(du.newUser(u));		
 			return ("Usuario Creado: " + u.toString());
 		}else return ("El usuario ya existe, utilice uno diferente");

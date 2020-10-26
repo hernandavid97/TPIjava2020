@@ -101,7 +101,7 @@ public class Usuario {
 		 nroDoc = nro;
 	}
 	public void setTipoDoc(String tipo) {
-		 nroDoc = tipo;
+		 tipoDoc = tipo;
 	}
 	
 	public void setAdoptante(boolean ia) {
