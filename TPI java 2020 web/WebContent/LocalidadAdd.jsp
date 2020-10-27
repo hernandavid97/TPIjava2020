@@ -1,3 +1,4 @@
+<%@page import="entities.Localidad"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -28,13 +29,19 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<% Localidad l = (Localidad)request.getAttribute("loc"); %>
 </head>
 <body>
 	
 	<div class="limiter">
+	<%if (l != null) { %>
+			<div>
+				<h2 class="text-center snack">Localidad <%=l.getNombre()%> creada con id <%=l.getId()%></h2>
+			</div>
+			<% } %>
 		<div class="container-login100" style="background-image: url('images/cachorros.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form" action="signin" method="post">
+				<form class="login100-form validate-form" action="localidadAdd" method="post">
 					<span class="login100-form-title p-b-10">
 						AdoptAr
 					</span>

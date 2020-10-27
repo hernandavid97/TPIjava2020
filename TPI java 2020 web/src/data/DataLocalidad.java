@@ -9,7 +9,7 @@ import entities.Localidad;
 
 public class DataLocalidad {
 	
-	public Localidad getByNombre(String nom) {
+	public Localidad getByNombre(Localidad u) {
 		Localidad l = null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -17,7 +17,7 @@ public class DataLocalidad {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
 					"select id_localidad,nombre_localidad,provincia from localidad where nombre_localidad=?"
 					);
-			stmt.setString(1, nom);
+			stmt.setString(1, u.getNombre());
 			rs=stmt.executeQuery();
 			if(rs!=null && rs.next()) {
 				l=new Localidad();
@@ -107,9 +107,43 @@ public class DataLocalidad {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
-		
+		}	
 		
 		return localidades;
 	}
+	
+	public int newLocalidad(Localidad l) {
+		PreparedStatement stmt= null;
+		ResultSet keyResultSet=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().
+					prepareStatement(
+							"insert into localidad(nombre_localidad, provincia) values(?,?)",
+							PreparedStatement.RETURN_GENERATED_KEYS
+							);
+			stmt.setString(1, l.getNombre());
+			stmt.setString(2, l.getProvincia());
+			System.out.println("seteados" + l.toString());
+			stmt.executeUpdate();
+			
+			keyResultSet=stmt.getGeneratedKeys();
+            if(keyResultSet!=null && keyResultSet.next()){
+                l.setId(keyResultSet.getInt(1));
+            }
+
+			
+		}  catch (SQLException e) {
+            e.printStackTrace();
+		} finally {
+            try {
+                if(keyResultSet!=null)keyResultSet.close();
+                if(stmt!=null)stmt.close();
+                DbConnector.getInstancia().releaseConn();
+            } catch (SQLException e) {
+            	e.printStackTrace();
+            }
+		}
+		System.out.println("id creada " + l.getId());
+		return l.getId();
+    }
 }

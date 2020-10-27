@@ -17,12 +17,16 @@ public class CtrlLoc {
 		return dl.getAll();
 	}
 	
+	public Localidad validaLocalidad(Localidad l) {		
+		return dl.getByNombre(l);
+	}
 	
 	
-//	public String validaRegistro(Usuario u) {
-//		if (du.getByUser(u) == null) {
-//			u.setId(du.newUser(u));		
-//			return ("Usuario Creado: " + u.toString());
-//		}else return ("El usuario ya existe, utilice uno diferente");
-//	}
+	
+	public String validaAlta(Localidad l) {
+		if (dl.getByNombre(l) == null) {
+			l.setId(dl.newLocalidad(l));		
+			return ("Localidad Creada: " + l.toString());
+		}else return ("Localidad ya existe");
+	}
 }
