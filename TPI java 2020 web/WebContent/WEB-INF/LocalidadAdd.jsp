@@ -1,5 +1,3 @@
-<%@page import="java.util.LinkedList"%>
-<%@page import="logic.CtrlLoc"%>
 <%@page import="entities.Localidad"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -31,27 +29,20 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
-<% String e = (String)request.getAttribute("estado"); %>
-<% CtrlLoc ctrlLoc = new CtrlLoc(); 
-LinkedList<Localidad> localidades = ctrlLoc.getLocalidades();
-%>
+<% Localidad l = (Localidad)request.getAttribute("loc"); %>
 </head>
 <body>
 	
 	<div class="limiter">
-	<%if (e.equals("No puede borrar localidades en uso")) { %>
+	<a href="index.jsp" class="btn-flotante">HOME</a>
+	<%if (l != null) { %>
 			<div>
-				<h2 class="text-center snack-err"><%=e%></h2>
+				<h2 class="text-center snack">Localidad <%=l.getNombre()%> creada con id <%=l.getId()%></h2>
 			</div>
-			<% } else{%>
-			<div>
-				<h2 class="text-center snack"><%=e%></h2>
-			</div>
-			<%} %>
-			
+			<% } %>
 		<div class="container-login100" style="background-image: url('images/cachorros.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form" action="localidaddelete" method="post">
+				<form class="login100-form validate-form" action="localidadAdd" method="post">
 					<span class="login100-form-title p-b-10">
 						AdoptAr
 					</span>
@@ -60,28 +51,24 @@ LinkedList<Localidad> localidades = ctrlLoc.getLocalidades();
 					</span>
 					
 					<p class="text-center txt2 m-b-15" >
-						Baja de Localidad
+						Agregar Localidad
 					</p>
-					
-					<div class="wrap-input100 validate-input m-b-15" data-validate = "Localidad requerida">
+
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Usuario requerido">
 						<span class="label-input100">Localidad</span>
-						<select class="input100" required  name="localidad">	
-						<option value="">Elija localidad</option>					
-						<%						
-						for (Localidad loc : localidades) { 
-						%>						
-						<option value="<%= loc.getId()%>"><%= loc.getNombre() %></option> 
-						<% } %>
-						</select>
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
+						<input class="input100" type="text" name="nombre_localidad" placeholder="Ingrese localidad">						
 					</div>
-					
+
+					<div class="wrap-input100 validate-input" data-validate="Contraseña Requerida">
+						<span class="label-input100">Provincia</span>
+						<input class="input100" type="text" name="provincia" placeholder="Ingrese provincia">						
+					</div>
 															
 					<div class="container-login100-form-btn m-t-25">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn">
-								Quitar
+								Agregar
 							</button>
 						</div>
 					</div>	

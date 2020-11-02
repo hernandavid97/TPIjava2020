@@ -38,8 +38,9 @@
 <body>
 	<h2> <%= u.getNombre() %> <%=u.getApellido() %> </h2>
 	
-	<a href=#>Baja Localidad</a>
-	<a href=mascotaadd>Donar Mascota</a>
+	<a href="localidaddelete">Baja Localidad</a>
+	<a href="localidadadd">Alta Localidad</a>
+	<a href="mascotaadd">Donar Mascota</a>
 	<a href="logout">Cerrar Sesión</a>
 </body>
 

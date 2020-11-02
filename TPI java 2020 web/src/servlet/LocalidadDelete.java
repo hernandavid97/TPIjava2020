@@ -31,7 +31,7 @@ public class LocalidadDelete extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/WEB-INF/LocalidadBaja.jsp").forward(request, response);
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class LocalidadDelete extends HttpServlet {
 		Localidad l = new Localidad();
 		l.setId(Integer.parseInt(request.getParameter("localidad")));		
 		request.setAttribute("estado", ctrl.validaBaja(l));
-		request.getRequestDispatcher("LocalidadBaja.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/LocalidadBaja.jsp").forward(request, response);
 		
 	}
 

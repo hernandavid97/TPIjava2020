@@ -30,7 +30,7 @@ public class LocalidadAdd extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/WEB-INF/LocalidadAdd.jsp").forward(request, response);
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class LocalidadAdd extends HttpServlet {
 		ctrlLoc.validaAlta(l);
 		l = ctrlLoc.validaLocalidad(l);	
 		request.setAttribute("loc", l);
-		request.getRequestDispatcher("LocalidadAdd.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/LocalidadAdd.jsp").forward(request, response);
 	}
 
 }
