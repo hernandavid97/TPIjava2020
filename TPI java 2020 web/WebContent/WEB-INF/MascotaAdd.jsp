@@ -1,10 +1,12 @@
 <%@page import="entities.Localidad"%>
+<%@page import="logic.CtrlLoc"%>
+<%@page import="java.util.LinkedList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>ADM Localidades</title>
+	<title>AdoptAR - Sign Up</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -29,45 +31,58 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
-<% Localidad l = (Localidad)request.getAttribute("loc"); %>
+<% CtrlLoc ctrlLoc = new CtrlLoc(); 
+LinkedList<Localidad> localidades= ctrlLoc.getLocalidades();
+%>
 </head>
 <body>
 	
 	<div class="limiter">
-	<%if (l != null) { %>
-			<div>
-				<h2 class="text-center snack">Localidad <%=l.getNombre()%> creada con id <%=l.getId()%></h2>
-			</div>
-			<% } %>
 		<div class="container-login100" style="background-image: url('images/cachorros.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form" action="localidadAdd" method="post">
+				<form class="login100-form validate-form" action="mascotaadd" method="post">
 					<span class="login100-form-title p-b-10">
 						AdoptAr
 					</span>
-					<span class="login100-form-subtitle p-b-20" >
+					<span class="login100-form-subtitle p-b-39" >
 						Mascotas felices en hogares felices!
 					</span>
+
+					<div class="wrap-input100 validate-input m-b-15" data-validate = "Nombre requerido">
+						<span class="label-input100">Nombre</span>
+						<input class="input100" type="text" name="nombre_mascota" placeholder="Ingrese el nombre de la mascota">
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-15" data-validate="Epecie requerida">
+						<span class="label-input100">Especie</span>
+						<input class="input100" type="text" name="especie" placeholder="Ingrese la especie">
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
 					
-					<p class="text-center txt2 m-b-15" >
-						Agregar Localidad
-					</p>
-
-					<div class="wrap-input100 validate-input m-b-23" data-validate = "Usuario requerido">
-						<span class="label-input100">Localidad</span>
-						<input class="input100" type="text" name="nombre_localidad" placeholder="Ingrese localidad">						
+					<div class="wrap-input100 m-b-15">
+						<span class="label-input100">Edad</span>
+						<input class="input100" type="email" name="edad" placeholder="Ingrese la edad de la mascota">
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
-
-					<div class="wrap-input100 validate-input" data-validate="Contraseña Requerida">
-						<span class="label-input100">Provincia</span>
-						<input class="input100" type="text" name="provincia" placeholder="Ingrese provincia">						
+					
+					<div class="wrap-input100 validate-input m-b-15" data-validate = "Color requerido">
+						<span class="label-input100">Color</span>
+						<input class="input100" type="text" name="color" placeholder="Ingrese el color">
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
-															
+					
+					<div class="wrap-input100 validate-input m-b-15" data-validate = "Cargue por lo menos una imagen">
+						<span class="label-input100">Links de Imagenes (separados por coma)</span>
+						<input class="input100" type="text" name="imagenes" placeholder="Ingrese el link de la imagen">
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+						
 					<div class="container-login100-form-btn m-t-25">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn">
-								Agregar
+								Donar!
 							</button>
 						</div>
 					</div>	

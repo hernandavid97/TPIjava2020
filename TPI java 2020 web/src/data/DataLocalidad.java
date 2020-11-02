@@ -41,6 +41,38 @@ public class DataLocalidad {
 		return l;
 	}
 	
+	public Localidad getById(Localidad u) {
+		Localidad l = null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select id_localidad,nombre_localidad,provincia from localidad where id_localidad=?"
+					);
+			stmt.setInt(1, u.getId());
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()) {
+				l=new Localidad();
+				l.setNombre(rs.getNString("nombre_localidad"));
+				l.setId(rs.getInt("id_localidad"));
+				l.setProvincia(rs.getString("provincia"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return l;
+	}
+	
 	public void setLocalidad(Usuario us) {
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -145,5 +177,42 @@ public class DataLocalidad {
 		}
 		System.out.println("id creada " + l.getId());
 		return l.getId();
+    }
+	
+	public String bajaLocalidad(Localidad l) {
+		PreparedStatement stmt= null;
+		ResultSet keyResultSet=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().
+					prepareStatement(
+							"delete from localidad where id_localidad=?",
+							PreparedStatement.RETURN_GENERATED_KEYS
+							);
+			stmt.setInt(1, l.getId());			
+			System.out.println("seteados" + l.toString());
+			stmt.executeUpdate();
+			
+			keyResultSet=stmt.getGeneratedKeys();
+            if(keyResultSet!=null && keyResultSet.next()){
+                l.setId(keyResultSet.getInt(1));
+            }
+
+			
+		}  catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e);
+            return "No puede borrar localidades en uso";
+		} finally {
+            try {
+                if(keyResultSet!=null)keyResultSet.close();
+                if(stmt!=null)stmt.close();
+                DbConnector.getInstancia().releaseConn();
+            } catch (SQLException e) {
+            	e.printStackTrace();            	
+            }
+		}
+		System.out.println("id borrada " + l.getId());
+		String r = String.valueOf(l.getId());
+		return ("Localidad "+r + " Borrada");
     }
 }

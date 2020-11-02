@@ -8,19 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Localidad;
+
 import logic.CtrlLoc;
 
 /**
- * Servlet implementation class LocalidadAdd
+ * Servlet implementation class LocalidadDelete
  */
-@WebServlet({ "/LocalidadAdd", "/localidadadd", "/localidadAdd" })
-public class LocalidadAdd extends HttpServlet {
+@WebServlet({"/LocalidadDelete", "/localidaddelete"})
+public class LocalidadDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LocalidadAdd() {
+    public LocalidadDelete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,14 +39,12 @@ public class LocalidadAdd extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Localidad l = new Localidad();		
-		l.setNombre(request.getParameter("nombre_localidad"));
-		l.setProvincia(request.getParameter("provincia"));		
-		CtrlLoc ctrlLoc = new CtrlLoc();
-		ctrlLoc.validaAlta(l);
-		l = ctrlLoc.validaLocalidad(l);	
-		request.setAttribute("loc", l);
-		request.getRequestDispatcher("LocalidadAdd.jsp").forward(request, response);
+		CtrlLoc ctrl = new CtrlLoc();
+		Localidad l = new Localidad();
+		l.setId(Integer.parseInt(request.getParameter("localidad")));		
+		request.setAttribute("estado", ctrl.validaBaja(l));
+		request.getRequestDispatcher("LocalidadBaja.jsp").forward(request, response);
+		
 	}
 
 }

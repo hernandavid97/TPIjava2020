@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import data.DataLocalidad;
 import entities.Localidad;
-import entities.Usuario;
+
 
 public class CtrlLoc {
 	private DataLocalidad dl;
@@ -28,5 +28,19 @@ public class CtrlLoc {
 			l.setId(dl.newLocalidad(l));		
 			return ("Localidad Creada: " + l.toString());
 		}else return ("Localidad ya existe");
+	}
+	
+	public String validaBaja(Localidad l) {
+		if (dl.getById(l) != null) {
+			String b = "";
+			try {
+			b = dl.bajaLocalidad(l);
+			}
+			catch (Exception e) {
+				System.out.println(e);
+				// TODO: handle exception
+			}			
+			return (b);
+		}else return ("Localidad no existe");
 	}
 }

@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entities.Localidad;
-import logic.CtrlLoc;
+import entities.Mascota;
+import entities.Usuario;
 
 /**
- * Servlet implementation class LocalidadAdd
+ * Servlet implementation class MascotaAdd
  */
-@WebServlet({ "/LocalidadAdd", "/localidadadd", "/localidadAdd" })
-public class LocalidadAdd extends HttpServlet {
+@WebServlet({ "/MascotaAdd", "/mascotaadd" })
+public class MascotaAdd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LocalidadAdd() {
+    public MascotaAdd() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +30,7 @@ public class LocalidadAdd extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("WEB-INF/MascotaAdd.jsp").forward(request, response);
 	}
 
 	/**
@@ -38,14 +38,16 @@ public class LocalidadAdd extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Localidad l = new Localidad();		
-		l.setNombre(request.getParameter("nombre_localidad"));
-		l.setProvincia(request.getParameter("provincia"));		
-		CtrlLoc ctrlLoc = new CtrlLoc();
-		ctrlLoc.validaAlta(l);
-		l = ctrlLoc.validaLocalidad(l);	
-		request.setAttribute("loc", l);
-		request.getRequestDispatcher("LocalidadAdd.jsp").forward(request, response);
+		Mascota m = new Mascota();
+		Usuario u = new Usuario();
+		int id_don;
+		m.setNombre(request.getParameter("nombre"));
+		m.setNombre(request.getParameter("color"));
+		m.setNombre(request.getParameter("especie"));
+		m.setNombre(request.getParameter("edad"));
+		m.setNombre(request.getParameter("imagenes"));
+		u = (Usuario)request.getSession().getAttribute("usuario");
+		id_don = u.getId();
 	}
 
 }
