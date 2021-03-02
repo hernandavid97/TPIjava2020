@@ -37,9 +37,11 @@
 
 <body>
 	<h2> <%= u.getNombre() %> <%=u.getApellido() %> </h2>
-	
+	<%if (u.getTipo()==0){ %>
 	<a href="localidaddelete">Baja Localidad</a>
+	<a href="localidadmod">Modificar Localidad</a>
 	<a href="localidadadd">Alta Localidad</a>
+	<%} %>
 	<a href="mascotaadd">Donar Mascota</a>
 	<a href="logout">Cerrar Sesión</a>
 </body>

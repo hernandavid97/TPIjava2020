@@ -215,4 +215,40 @@ public class DataLocalidad {
 		String r = String.valueOf(l.getId());
 		return ("Localidad "+r + " Borrada");
     }
+	
+	public String updateLocalidad(Localidad nueva, Localidad old) {
+		PreparedStatement stmt= null;
+		ResultSet keyResultSet=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().
+					prepareStatement(
+							"update localidad set nombre_localidad=?, provincia=? where id_localidad=?",
+							PreparedStatement.RETURN_GENERATED_KEYS
+							);
+			stmt.setString(1, nueva.getNombre());
+			stmt.setString(2, nueva.getProvincia());
+			stmt.setInt(3, old.getId());
+			System.out.println("seteados" + nueva.toString());
+			stmt.executeUpdate();
+			
+			keyResultSet=stmt.getGeneratedKeys();
+            if(keyResultSet!=null && keyResultSet.next()){
+                nueva.setId(keyResultSet.getInt(1));                
+            }
+
+			
+		}  catch (SQLException e) {
+            e.printStackTrace();
+            return ("Error: "+ e);
+		} finally {
+            try {
+                if(keyResultSet!=null)keyResultSet.close();
+                if(stmt!=null)stmt.close();
+                DbConnector.getInstancia().releaseConn();
+            } catch (SQLException e) {
+            	e.printStackTrace();
+            }
+		}
+		return("Localidad " + old.getId() + " modificada correctamente");
+    }
 }

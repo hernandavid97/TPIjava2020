@@ -43,4 +43,11 @@ public class CtrlLoc {
 			return (b);
 		}else return ("Localidad no existe");
 	}
+	
+	public String validaModif(Localidad nueva, Localidad old) {
+		if (dl.getById(old) != null) {	
+			return (dl.updateLocalidad(nueva, old));
+		}else return ("Localidad no existe");
+	}
+	
 }
