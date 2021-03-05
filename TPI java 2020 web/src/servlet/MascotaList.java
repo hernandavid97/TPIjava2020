@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,19 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Mascota;
-import entities.Usuario;
+import logic.MascotaLogic;
 
 /**
  * Servlet implementation class MascotaAdd
  */
-@WebServlet({ "/MascotaAdd", "/mascotaadd" })
-public class MascotaAdd extends HttpServlet {
+@WebServlet({ "/MascotaList", "/mascotalist" })
+public class MascotaList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MascotaAdd() {
+    public MascotaList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,24 +32,16 @@ public class MascotaAdd extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("WEB-INF/MascotaAdd.jsp").forward(request, response);
+    	ArrayList<Mascota> mascotas = MascotaLogic.getAll();
+    	request.setAttribute("listaMascotas", mascotas);
+		request.getRequestDispatcher("/WEB-INF/MascotaList.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Mascota m = new Mascota();
-		Usuario u = new Usuario();
-		int id_don;
-		m.setNombre(request.getParameter("nombre"));
-		m.setNombre(request.getParameter("color"));
-		m.setNombre(request.getParameter("especie"));
-		m.setNombre(request.getParameter("edad"));
-		m.setNombre(request.getParameter("imagenes"));
-		u = (Usuario)request.getSession().getAttribute("usuario");
-		id_don = u.getId();
+
 	}
 
 }

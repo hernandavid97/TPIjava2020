@@ -41,7 +41,7 @@ LinkedList<Localidad> localidades= ctrlLoc.getLocalidades();
 	<a href="index.jsp" class="btn-flotante">HOME</a>
 		<div class="container-login100" style="background-image: url('images/cachorros.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form" action="mascotaadd" method="post">
+				<form class="login100-form validate-form" action="mascotas/add" method="post">
 					<span class="login100-form-title p-b-10">
 						AdoptAr
 					</span>
@@ -63,7 +63,7 @@ LinkedList<Localidad> localidades= ctrlLoc.getLocalidades();
 					
 					<div class="wrap-input100 m-b-15">
 						<span class="label-input100">Edad</span>
-						<input class="input100" type="email" name="edad" placeholder="Ingrese la edad de la mascota">
+						<input class="input100" type="number" name="edad" placeholder="Ingrese la edad de la mascota">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 					

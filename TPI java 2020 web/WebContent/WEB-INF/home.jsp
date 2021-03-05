@@ -43,6 +43,7 @@
 	<a href="localidadadd">Alta Localidad</a>
 	<%} %>
 	<a href="mascotaadd">Donar Mascota</a>
+	<a href="mascotalist">Listado de Mascotas</a>
 	<a href="logout">Cerrar Sesión</a>
 </body>
 
