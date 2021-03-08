@@ -42,7 +42,8 @@
 	<a href="localidadmod">Modificar Localidad</a>
 	<a href="localidadadd">Alta Localidad</a>
 	<%} %>
-	<a href="mascotaadd">Donar Mascota</a>
+	<a href="transitoadd">Donar Mascota</a>
+	<a href="transitolist">Listado de Transitos</a>
 	<a href="mascotalist">Listado de Mascotas</a>
 	<a href="logout">Cerrar Sesión</a>
 </body>

@@ -50,6 +50,44 @@ public class DataUsuario {
 		return p;
 	}
 	
+	public Usuario getOne(Usuario u) {
+		Usuario p=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("select * from usuario where id_usuario = ?");
+			stmt.setString(1, Integer.toString(u.getId()));
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()) {
+				p=new Usuario();
+				p.setNroDoc("nro_doc");
+				p.setTipoDoc("tipo_doc");
+				p.setId(rs.getInt("id_usuario"));
+				p.setUsuario(rs.getNString("usuario"));
+				p.setNombre(rs.getString("nombre"));
+				p.setApellido(rs.getString("apellido"));	
+				p.setEmail(rs.getString("email"));
+				p.setDomicilio("domicilio");
+				p.setDonante(rs.getBoolean("is_donante"));
+				p.setAdoptante(rs.getBoolean("is_adoptante"));
+				p.setTipo(rs.getInt("tipo"));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return p;
+	}
+	
 	public int newUser(Usuario u) {
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
