@@ -3,6 +3,7 @@ package data;
 
 import java.sql.*;
 
+import entities.Localidad;
 import entities.Usuario;
 
 public class DataUsuario {
@@ -33,6 +34,48 @@ public class DataUsuario {
 				p.setAdoptante(rs.getBoolean("is_adoptante"));
 				p.setTipo(rs.getInt("tipo"));
 				dl.setLocalidad(u);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return p;
+	}
+	
+	public Usuario getById(Usuario u) {
+		DataLocalidad dl=new DataLocalidad();
+		Usuario p=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"select id_usuario,usuario,nombre,password,apellido,tipo_doc,nro_doc,email,is_adoptante,is_donante,localidad,tipo from usuario where id_usuario=?"
+					);
+			stmt.setInt(1, u.getId());			
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()) {
+				p=new Usuario();
+				p.setNroDoc("nro_doc");
+				p.setTipoDoc("tipo_doc");
+				p.setId(rs.getInt("id_usuario"));
+				p.setUsuario(rs.getNString("usuario"));
+				p.setNombre(rs.getString("nombre"));
+				p.setApellido(rs.getString("apellido"));	
+				p.setEmail(rs.getString("email"));
+				p.setDomicilio("domicilio");
+				p.setDonante(rs.getBoolean("is_donante"));
+				p.setAdoptante(rs.getBoolean("is_adoptante"));
+				p.setTipo(rs.getInt("tipo"));
+				dl.setLocalidad(p);
 
 			}
 		} catch (SQLException e) {
@@ -95,5 +138,51 @@ public class DataUsuario {
 		}
 		System.out.println("id creada " + u.getId());
 		return u.getId();
+    }
+	
+	public String updateUsuario(Usuario nuevo, Usuario old) {
+		PreparedStatement stmt= null;
+		ResultSet keyResultSet=null;
+		Localidad loc = nuevo.getLocalidad();
+		try {
+			stmt=DbConnector.getInstancia().getConn().
+					prepareStatement(
+							"update usuario set usuario=?,nombre=?,apellido=?,tipo_doc=?,nro_doc=?,password=?,email=?,is_adoptante=?,is_donante=?,localidad=?,tipo=?,domicilio=? where id_usuario=?",
+							PreparedStatement.RETURN_GENERATED_KEYS
+							);
+			stmt.setString(1, nuevo.getUsuario());
+			stmt.setString(2, nuevo.getNombre());
+			stmt.setString(3, nuevo.getApellido());
+			stmt.setString(4, nuevo.getTipoDoc());
+			stmt.setString(5, nuevo.getNroDoc());
+			stmt.setString(6, nuevo.getPassword());
+			stmt.setString(7, nuevo.getEmail());
+			stmt.setBoolean(8, nuevo.getAdoptante());
+			stmt.setBoolean(9, nuevo.getDonante());
+			stmt.setInt(10, loc.getId());
+			stmt.setInt(11, nuevo.getTipo());
+			stmt.setString(12, nuevo.getDomicilio());
+			stmt.setInt(13, old.getId());
+			System.out.println("seteados" + nuevo.toString());
+			System.out.println("id vieja:" + old.getId());
+			System.out.println("id loc:" + loc.getId());
+			stmt.executeUpdate();			
+			keyResultSet=stmt.getGeneratedKeys();
+            if(keyResultSet!=null && keyResultSet.next()){
+                nuevo.setId(keyResultSet.getInt(1));                
+            }			
+		}  catch (SQLException e) {
+            e.printStackTrace();
+            return ("Error: "+ e);
+		} finally {
+            try {
+                if(keyResultSet!=null)keyResultSet.close();
+                if(stmt!=null)stmt.close();
+                DbConnector.getInstancia().releaseConn();
+            } catch (SQLException e) {
+            	e.printStackTrace();
+            }
+		}
+		return("Usuario " + old.getId() + " modificado correctamente");
     }
 }

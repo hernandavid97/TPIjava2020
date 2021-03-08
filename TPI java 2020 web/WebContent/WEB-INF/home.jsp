@@ -42,6 +42,7 @@
 	<a href="localidadmod">Modificar Localidad</a>
 	<a href="localidadadd">Alta Localidad</a>
 	<%} %>
+	<a href="usuariomod">Modificar Usuario</a>
 	<a href="mascotaadd">Donar Mascota</a>
 	<a href="logout">Cerrar Sesión</a>
 </body>
