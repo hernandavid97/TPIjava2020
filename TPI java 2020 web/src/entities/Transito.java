@@ -5,6 +5,7 @@ public class Transito {
 	private Date fecha_hora_donacion;
 	private Date fecha_hora_adopcion;
 	private Usuario donante;
+	private Usuario adoptante;
 	private Mascota mascota;
 
 	public int getId() {
@@ -37,6 +38,12 @@ public class Transito {
 	}
 	public void setDonante(Usuario a) {
 		donante = a;
+	}
+	public Usuario getAdoptante() {
+		return adoptante;
+	}
+	public void setAdoptante(Usuario a) {
+		adoptante = a;
 	}
 }
 

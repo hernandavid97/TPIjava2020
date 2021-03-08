@@ -16,45 +16,35 @@ import entities.Usuario;
 import logic.TransitoLogic;
 
 /**
- * Servlet implementation class TransitoAdd
+ * Servlet implementation class Adopcion
  */
-@WebServlet({ "/TransitoAdd", "/transitoadd" })
-public class TransitoAdd extends HttpServlet {
+@WebServlet({ "/Adopcion", "/adopcion" })
+public class Adopcion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TransitoAdd() {
+    public Adopcion() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("WEB-INF/TransitoAdd.jsp").forward(request, response);
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Mascota m = new Mascota();
-		Transito t = new Transito();
-		Usuario u = new Usuario();
-		m.setNombre(request.getParameter("nombre_mascota"));
-		m.setTipo(request.getParameter("tipo"));
-		m.setEdad(Integer.parseInt(request.getParameter("edad")));
-		m.setColor(request.getParameter("color"));
-		m.setImagenes(request.getParameter("imagenes"));
-		m.setDisponible(true);
-		u = (Usuario)request.getSession().getAttribute("usuario");
+		Usuario u = (Usuario)request.getSession().getAttribute("usuario");
+		String adopcion = request.getParameter("seleccionada");
+		if (adopcion != null) {
+			Integer id_transito = Integer.parseInt(adopcion);
+			TransitoLogic.adopcion(id_transito, u.getId());
+		}
 		
-		TransitoLogic.insertOne(t, m, u);
+
+
 		
     	ArrayList<Transito> transitos = TransitoLogic.getAll();
     	request.setAttribute("listaTransitos", transitos);

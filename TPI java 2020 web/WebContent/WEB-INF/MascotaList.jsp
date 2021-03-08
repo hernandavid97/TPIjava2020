@@ -20,7 +20,6 @@
 				<th>Tipo</th>
 				<th>Edad</th>
 				<th>Color</th>
-				<th>Disponibilidad</th>
 				<th>Imagenes</th>
 			</tr>
 		</thead>
@@ -34,7 +33,6 @@
 				<td><%=m.getTipo()%></td>
 				<td><%=m.getEdad()%></td>
 				<td><%=m.getColor()%></td>
-				<td><%=m.getDisponible() ? "Si" : "No"%></td>
 				<td><img class="imagen" src="<%=m.getImagenes()%>" /></td>
 			</tr>
 			<%

@@ -17,4 +17,9 @@ public class TransitoLogic {
 		DataTransito a=new DataTransito();
 		a.insertOne(transito);
 	} 
+	
+	public static void adopcion(int id_transito, int id_adoptante) {
+		DataTransito a=new DataTransito();
+		a.adopcion(id_transito, id_adoptante);
+	} 
 }
