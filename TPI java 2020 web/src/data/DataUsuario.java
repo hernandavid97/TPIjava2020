@@ -51,7 +51,10 @@ public class DataUsuario {
 		return p;
 	}
 	
-	public Usuario getById(Usuario u) {
+
+
+		
+	public Usuario getOne(Usuario u) {
 		DataLocalidad dl=new DataLocalidad();
 		Usuario p=null;
 		PreparedStatement stmt=null;
@@ -60,7 +63,7 @@ public class DataUsuario {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement(
 					"select id_usuario,usuario,nombre,password,apellido,tipo_doc,nro_doc,email,is_adoptante,is_donante,localidad,tipo from usuario where id_usuario=?"
 					);
-			stmt.setInt(1, u.getId());			
+			stmt.setInt(1, u.getId());	
 			rs=stmt.executeQuery();
 			if(rs!=null && rs.next()) {
 				p=new Usuario();
@@ -76,7 +79,6 @@ public class DataUsuario {
 				p.setAdoptante(rs.getBoolean("is_adoptante"));
 				p.setTipo(rs.getInt("tipo"));
 				dl.setLocalidad(p);
-
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

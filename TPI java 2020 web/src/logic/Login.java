@@ -23,7 +23,7 @@ public class Login {
 	
 	public String validaModif(Usuario nuevo, Usuario old) {
 		//System.out.println("id en ctrl "+nuevo.getLocalidad().getId());
-		if (du.getById(nuevo) != null) {			
+		if (du.getOne(nuevo) != null) {			
 			return (du.updateUsuario(nuevo, old));			
 		}else return ("Error al modificar usuario");
 	}

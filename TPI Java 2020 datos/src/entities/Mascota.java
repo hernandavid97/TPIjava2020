@@ -6,6 +6,8 @@ public class Mascota {
 	private String tipo_animal;
 	private String color;
 	private int edad;
+	private String imagenes;
+	private boolean disponible;
 	
 	public int getId() {
 		return id_mascota;
@@ -27,6 +29,14 @@ public class Mascota {
 		return color;
 	}
 	
+	public boolean getDisponible() {
+		return disponible;
+	}
+	
+	public String getImagenes() {
+		return imagenes;
+	}
+	
 	public void setId(int id) {
 		id_mascota = id;
 	}
@@ -46,4 +56,13 @@ public class Mascota {
 	public void setColor(String c) {
 		color = c;
 	}
+	
+	public void setDisponible(boolean d) {
+		disponible = d;
+	}
+	
+	public void setImagenes(String i) {
+		imagenes = i;
+	}
+	
 }
