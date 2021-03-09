@@ -36,17 +36,18 @@
 </head>
 
 <body>
-	<h2> <%= u.getNombre() %> <%=u.getApellido() %> </h2>
+	<h2>Bienvenido  <%= u.getNombre() %> <%=u.getApellido() %> </h2>
 	<%if (u.getTipo()==0){ %>
-	<a href="localidaddelete">Baja Localidad</a>
-	<a href="localidadmod">Modificar Localidad</a>
-	<a href="localidadadd">Alta Localidad</a>
+	<a href="localidaddelete">Baja Localidad</a> <br> <br>
+	<a href="localidadmod">Modificar Localidad</a><br><br>
+	<a href="localidadadd">Alta Localidad</a><br> <br>
 	<%} %>
-	<a href="usuariomod">Modificar Usuario</a>
-	<a href="transitoadd">Donar Mascota</a>
-	<a href="transitolist">Listado de Transitos</a>
-	<a href="mascotalist">Listado de Mascotas</a>
-	<a href="logout">Cerrar Sesión</a>
+	<a href="usuariomod">Modificar datos de Usuario</a><br> <br>
+	<a href="usuariobaj">Borrar Cuenta</a><br> <br>
+	<a href="transitoadd">Donar Mascota</a><br> <br>
+	<a href="transitolist">Listado de Transitos</a><br> <br>
+	<a href="mascotalist">Listado de Mascotas</a><br> <br>
+	<a href="logout">Cerrar Sesión</a><br> <br>
 </body>
 
 </html>

@@ -1,29 +1,29 @@
 package servlet;
 
 import java.io.IOException;
-
-
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import entities.Usuario;
 import logic.Login;
 
 /**
- * Servlet implementation class Signin
+ * Servlet implementation class usuarioModif
  */
-@WebServlet({ "/Signin", "/signin" })
-public class Signin extends HttpServlet {
+@WebServlet({ "/usuariobaj", "/usuarioBaj", "/UsuarioBaj" })
+public class usuarioBaja extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Signin() {
+    public usuarioBaja() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +33,7 @@ public class Signin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doPost(request, response);
+		request.getRequestDispatcher("/WEB-INF/UsuarioBaja.jsp").forward(request, response);
 	}
 
 	/**
@@ -42,22 +42,15 @@ public class Signin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		//VALIDAR INGRESOS Y PERSONA NULL
-		
-		String usuario = request.getParameter("username");
-		String pass = request.getParameter("pass");
-		Login ctrl = new Login();
-		Usuario user = new Usuario();
-		user.setUsuario(usuario);
-		user.setPassword(pass);
-		user = ctrl.validate(user);
-		if(user!= null && user.getFechaBaja() == null) {
-		request.getSession().setAttribute("usuario", user);	
-		request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
-		}else {
-			request.setAttribute("estado", "Usuario o contraseña incorrectos");
-			request.getRequestDispatcher("index.jsp").forward(request, response);			
-		}
+		Usuario  old = (Usuario)request.getSession().getAttribute("usuario");			
+		Login ctrl = new Login();	
+		Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");			
+		old.setFechaBaja(formatter.format(new java.util.Date()));
+		System.out.println("usuario baja: " + old.toString());
+		request.setAttribute("estado", ctrl.validaBaja(old));
+		HttpSession sesion = request.getSession();
+		sesion.removeAttribute("usuario");
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 		
 	}
 

@@ -14,13 +14,14 @@ public class Usuario {
 	private boolean isAdoptante;
 	private boolean isDonante;
 	private Localidad localidad;
+	private String fecha_baja;
 	private int tipo;
 	
 	@Override
 	public String toString() {
 		return (id_usuario +" " + usuario+" " + password+" " + email+" " + nombre
 				+" " + apellido+" " + domicilio+" " + tipoDoc+" "
-				+ nroDoc+" " + isAdoptante+" " + isDonante+" " + localidad + " " + tipo);
+				+ nroDoc+" " + isAdoptante+" " + isDonante+" " + localidad + " " + tipo + " " + fecha_baja );
 	}
 	public int getId() {
 		return id_usuario;
@@ -74,6 +75,10 @@ public class Usuario {
 		return tipo;
 	}
 	
+	public String getFechaBaja() {
+		return fecha_baja;
+	}
+	
 	public void setId(int id) {
 		id_usuario = id;
 	}
@@ -123,6 +128,10 @@ public class Usuario {
 	
 	public void setTipo(int t) {
 		 tipo = t;
+	}
+	
+	public void setFechaBaja(String fecha) {
+		 fecha_baja = fecha;
 	}
 
 }
