@@ -1,16 +1,11 @@
 package servlet;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import entities.Mascota;
 import entities.Transito;
 import entities.Usuario;
 import logic.TransitoLogic;
@@ -41,11 +36,7 @@ public class Adopcion extends HttpServlet {
 		if (adopcion != null) {
 			Integer id_transito = Integer.parseInt(adopcion);
 			TransitoLogic.adopcion(id_transito, u.getId());
-		}
-		
-
-
-		
+		}		
     	ArrayList<Transito> transitos = TransitoLogic.getAll();
     	request.setAttribute("listaTransitos", transitos);
 		request.getRequestDispatcher("/WEB-INF/TransitoList.jsp").forward(request, response);
