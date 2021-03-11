@@ -41,6 +41,7 @@
 	<a href="localidaddelete">Baja Localidad</a> <br> <br>
 	<a href="localidadmod">Modificar Localidad</a><br><br>
 	<a href="localidadadd">Alta Localidad</a><br> <br>
+	<a href="localidadlist">Listado de localidades</a><br> <br>
 	<%} %>
 	<a href="usuariomod">Modificar datos de Usuario</a><br> <br>
 	<a href="usuariobaj">Borrar Cuenta</a><br> <br>
