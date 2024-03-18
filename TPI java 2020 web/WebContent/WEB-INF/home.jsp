@@ -67,9 +67,11 @@
 					<a href="localidadadd">Alta Localidad</a><br> <br>
 					<a href="localidadmod">Modificar Localidad</a><br><br>
 					<a href="localidaddelete">Baja Localidad</a> <br> <br>
+					<a href="mascotadelete">Baja Mascota</a> <br> <br>
 				<%} %>
 				<a href="transitolist">Listado de Transitos</a><br> <br>
-				<a href="mascotalist">Listado de Mascotas</a><br> <br>
+				<a href="mascotalist">Listado de Mascotas</a><br> <br>				
+				<a href="mascotamod">Modificar Mascotas</a> <br> <br>
 				<a href="transitoadd">Publicar mascota en adopcion</a><br> <br>
 				<div style="border: 1px solid white; width: 100%; height: 0px; margin-bottom: 20px;"></div>
 				<a href="usuariomod">Modificar datos de Usuario</a><br> <br>

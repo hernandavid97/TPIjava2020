@@ -1,9 +1,10 @@
+<%@page import="java.util.LinkedList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
 <%@page import="entities.Mascota"%>
 <%@page import="java.util.ArrayList"%>
-<%ArrayList<Mascota> lm = (ArrayList<Mascota>) request.getAttribute("listaMascotas");%>
+<%LinkedList<Mascota> lm = (LinkedList<Mascota>) request.getAttribute("listaMascotas");%>
 <!DOCTYPE html>
 <html>
 <head>

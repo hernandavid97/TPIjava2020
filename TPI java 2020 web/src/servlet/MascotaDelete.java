@@ -1,9 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,19 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Mascota;
-import logic.MascotaLogic;
+import logic.CtrlMas;
 
 /**
- * Servlet implementation class MascotaAdd
+ * Servlet implementation class LocalidadDelete
  */
-@WebServlet({ "/MascotaList", "/mascotalist" })
-public class MascotaList extends HttpServlet {
+@WebServlet({"/MascotaDelete", "/mascotadelete"})
+public class MascotaDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MascotaList() {
+    public MascotaDelete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,16 +30,29 @@ public class MascotaList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-    	LinkedList<Mascota> mascotas = MascotaLogic.getAll();
-    	request.setAttribute("listaMascotas", mascotas);
-		request.getRequestDispatcher("/WEB-INF/MascotaList.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/MascotaBaja.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
+		CtrlMas ctrl = new CtrlMas();
+		Mascota m = new Mascota();
+		m.setId(Integer.parseInt(request.getParameter("mascota")));	
+		String respString;
+		try {
+			respString = ctrl.validaBaja(m);
+			request.setAttribute("estado", respString);
+			request.getRequestDispatcher("/WEB-INF/MascotaBaja.jsp").forward(request, response);
+		} catch (Exception er) {
+			System.out.println(er.getMessage());
+			request.setAttribute("estado", "Error");
+			request.setAttribute("errorMessage", er.getMessage());
+			request.getRequestDispatcher("/WEB-INF/MascotaBaja.jsp").forward(request, response);
+		}
+		
 	}
 
 }

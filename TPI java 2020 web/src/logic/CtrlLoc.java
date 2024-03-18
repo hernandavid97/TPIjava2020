@@ -30,7 +30,7 @@ public class CtrlLoc {
 		}else return ("Localidad ya existe");
 	}
 	
-	public String validaBaja(Localidad l) {
+	public String validaBaja(Localidad l) throws Exception {
 		if (dl.getById(l) != null) {
 			String b = "";
 			try {
@@ -38,6 +38,7 @@ public class CtrlLoc {
 			}
 			catch (Exception e) {
 				System.out.println(e);
+				throw e;
 				// TODO: handle exception
 			}			
 			return (b);

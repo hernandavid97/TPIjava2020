@@ -1,3 +1,5 @@
+<%@page import="entities.Mascota"%>
+<%@page import="logic.CtrlMas"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="logic.CtrlLoc"%>
 <%@page import="entities.Localidad"%>
@@ -6,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>ABM Localidades</title>
+	<title>Baja Mascotas</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -33,8 +35,8 @@
 <!--===============================================================================================-->
 <% String e = (String)request.getAttribute("estado"); %>
 <% String em = (String)request.getAttribute("errorMessage"); %>
-<% CtrlLoc ctrlLoc = new CtrlLoc(); 
-LinkedList<Localidad> localidades = ctrlLoc.getLocalidades();
+<% CtrlMas ctrlMas = new CtrlMas(); 
+	LinkedList<Mascota> mascotas = ctrlMas.getMascotas();
 %>
 </head>
 <body>
@@ -53,7 +55,7 @@ LinkedList<Localidad> localidades = ctrlLoc.getLocalidades();
 			
 		<div class="container-login100" style="background-image: url('images/cachorros.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form" action="localidaddelete" method="post">
+				<form class="login100-form validate-form" action="mascotadelete" method="post">
 					<span class="login100-form-title p-b-10">
 						AdoptAr
 					</span>
@@ -62,17 +64,17 @@ LinkedList<Localidad> localidades = ctrlLoc.getLocalidades();
 					</span>
 					
 					<p class="text-center txt2 m-b-15" >
-						Baja de Localidad
+						Baja de Mascota
 					</p>
 					
 					<div class="wrap-input100 validate-input m-b-15" data-validate = "Localidad requerida">
-						<span class="label-input100">Localidad</span>
-						<select class="input100" required  name="localidad">	
-						<option value="">Elija localidad</option>					
+						<span class="label-input100">Mascota</span>
+						<select class="input100" required  name="mascota">	
+						<option value="">Elija Mascota</option>					
 						<%						
-						for (Localidad loc : localidades) { 
+						for (Mascota mas : mascotas) { 
 						%>						
-						<option value="<%= loc.getId()%>"><%= loc.getNombre() %></option> 
+						<option value="<%= mas.getId()%>"><%= mas.getNombre() %></option> 
 						<% } %>
 						</select>
 						<span class="focus-input100" data-symbol="&#xf206;"></span>

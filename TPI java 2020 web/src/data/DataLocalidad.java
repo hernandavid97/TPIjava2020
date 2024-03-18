@@ -179,7 +179,7 @@ public class DataLocalidad {
 		return l.getId();
     }
 	
-	public String bajaLocalidad(Localidad l) {
+	public String bajaLocalidad(Localidad l) throws Exception {
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
@@ -201,7 +201,7 @@ public class DataLocalidad {
 		}  catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e);
-            return "No puede borrar localidades en uso";
+            throw new Exception("Ha ocurrido un error al dar de baja la localidad, no pueden eliminar localidades activas");
 		} finally {
             try {
                 if(keyResultSet!=null)keyResultSet.close();
@@ -213,7 +213,7 @@ public class DataLocalidad {
 		}
 		System.out.println("id borrada " + l.getId());
 		String r = String.valueOf(l.getId());
-		return ("Localidad "+r + " Borrada");
+		return ("Localidad "+ r + " Borrada");
     }
 	
 	public String updateLocalidad(Localidad nueva, Localidad old) {

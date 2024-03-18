@@ -8,20 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Localidad;
-
+import entities.Mascota;
 import logic.CtrlLoc;
+import logic.CtrlMas;
 
 /**
- * Servlet implementation class LocalidadDelete
+ * Servlet implementation class LocalidadModif
  */
-@WebServlet({"/LocalidadDelete", "/localidaddelete"})
-public class LocalidadDelete extends HttpServlet {
+@WebServlet({ "/mascotamod", "/MascotaMod" })
+public class MascotaModif extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LocalidadDelete() {
+    public MascotaModif() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +32,7 @@ public class LocalidadDelete extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/LocalidadBaja.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/MascotaModif.jsp").forward(request, response);
 	}
 
 	/**
@@ -39,21 +40,18 @@ public class LocalidadDelete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		CtrlLoc ctrl = new CtrlLoc();
-		Localidad l = new Localidad();
-		l.setId(Integer.parseInt(request.getParameter("localidad")));	
-		String respString;
-		try {
-			respString = ctrl.validaBaja(l);
-			request.setAttribute("estado", respString);
-			request.getRequestDispatcher("/WEB-INF/LocalidadBaja.jsp").forward(request, response);
-		} catch (Exception er) {
-			System.out.println(er.getMessage());
-			request.setAttribute("estado", "Error");
-			request.setAttribute("errorMessage", er.getMessage());
-			request.getRequestDispatcher("/WEB-INF/LocalidadBaja.jsp").forward(request, response);
-		}
-		
+		Mascota  nueva = new Mascota();	
+		Mascota  old = new Mascota();	
+		nueva.setNombre(request.getParameter("nombre_mascota"));
+		nueva.setColor(request.getParameter("color"));	
+		nueva.setTipo(request.getParameter("tipo"));	
+		nueva.setEdad(Integer.parseInt(request.getParameter("edad")));	
+		nueva.setImagenes(request.getParameter("imagenes"));	
+		System.out.println(nueva.getNombre());
+		old.setId(Integer.parseInt(request.getParameter("id")));
+		CtrlMas ctrlmas = new CtrlMas();
+		request.setAttribute("estado", ctrlmas.validaModif(nueva,old));
+		request.getRequestDispatcher("/WEB-INF/MascotaModif.jsp").forward(request, response);
 	}
 
 }

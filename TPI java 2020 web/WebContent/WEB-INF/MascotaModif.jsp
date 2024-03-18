@@ -1,12 +1,13 @@
+<%@page import="entities.Usuario"%>
+<%@page import="entities.Mascota"%>
+<%@page import="logic.CtrlMas"%>
 <%@page import="java.util.LinkedList"%>
-<%@page import="logic.CtrlLoc"%>
-<%@page import="entities.Localidad"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>ABM Localidades</title>
+	<title>Modif mascota</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -32,28 +33,23 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 <% String e = (String)request.getAttribute("estado"); %>
-<% String em = (String)request.getAttribute("errorMessage"); %>
-<% CtrlLoc ctrlLoc = new CtrlLoc(); 
-LinkedList<Localidad> localidades = ctrlLoc.getLocalidades();
+<% CtrlMas ctrlMas = new CtrlMas(); 
+Usuario u = (Usuario)session.getAttribute("usuario");
+LinkedList<Mascota> mascotas = ctrlMas.getMascotasByUser(u.getId());	
 %>
 </head>
 <body>
 	
 	<div class="limiter">
 	<a href="index.jsp" class="btn-flotante">HOME</a>
-	<%if ((e!= null) && (e.equals("Error"))) { %>
-			<div style="position: absolute;">
-				<h2 class="text-center snack-err"><%=em%></h2>
+	<%if (e != null) { %>
+			<div>
+				<h2 class="text-center snack"><%=e %></h2>
 			</div>
-			<% } else if (e != null){%>
-			<div style="position: absolute;">
-				<h2 class="text-center snack"><%=e%></h2>
-			</div>
-			<%} %>
-			
+			<% } %>
 		<div class="container-login100" style="background-image: url('images/cachorros.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form" action="localidaddelete" method="post">
+				<form class="login100-form validate-form" action="mascotamod" method="post">
 					<span class="login100-form-title p-b-10">
 						AdoptAr
 					</span>
@@ -62,28 +58,54 @@ LinkedList<Localidad> localidades = ctrlLoc.getLocalidades();
 					</span>
 					
 					<p class="text-center txt2 m-b-15" >
-						Baja de Localidad
+						Modificar Mascota
 					</p>
 					
-					<div class="wrap-input100 validate-input m-b-15" data-validate = "Localidad requerida">
-						<span class="label-input100">Localidad</span>
-						<select class="input100" required  name="localidad">	
-						<option value="">Elija localidad</option>					
+					<div class="wrap-input100 validate-input m-b-15" data-validate = "Mascota requerida">
+						<span class="label-input100">Mascota</span>
+						<select class="input100" required  name="id">	
+						<option value="">Elija mascota actual</option>					
 						<%						
-						for (Localidad loc : localidades) { 
+						for (Mascota mas : mascotas) { 
 						%>						
-						<option value="<%= loc.getId()%>"><%= loc.getNombre() %></option> 
+						<option value="<%= mas.getId()%>"><%= mas.getNombre() %></option> 
 						<% } %>
 						</select>
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 					
+
+
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Nombre requerido">
+						<span class="label-input100">Nuevo Nombre</span>
+						<input class="input100" type="text" name="nombre_mascota" placeholder="Ingrese nombre">						
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Color Requerido">
+						<span class="label-input100">Nuevo Color</span>
+						<input class="input100" type="text" name="color" placeholder="Ingrese color">						
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate="Especie Requerida">
+						<span class="label-input100">Nueva Especie</span>
+						<input class="input100" type="text" name="tipo" placeholder="Ingrese especie">						
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate="Edad Requerida">
+						<span class="label-input100">Nueva Edad</span>
+						<input class="input100" type="number" name="edad" placeholder="Ingrese edad">						
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate="Imagen Requerida">
+						<span class="label-input100">Nuevas Imagenes</span>
+						<input class="input100" type="text" name="imagenes" placeholder="Ingrese imagenes separadas por coma">						
+					</div>
 															
 					<div class="container-login100-form-btn m-t-25">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn">
-								Quitar
+								Modificar
 							</button>
 						</div>
 					</div>	
