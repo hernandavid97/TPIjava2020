@@ -67,7 +67,7 @@ LinkedList<Localidad> localidades= ctrlLoc.getLocalidades();
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-15" data-validate="Contrase�a Requerida">
-						<span class="label-input100">Contrase�a</span>
+						<span class="label-input100">Contraseña</span>
 						<input class="input100" type="password" name="pass" placeholder="Ingrese su contrase�a">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>

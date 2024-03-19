@@ -60,8 +60,6 @@ LinkedList<Localidad> localidades= ctrlLoc.getLocalidades();
 						<p class="text-center txt2 m-b-15" >
 						Esta seguro de borrar su cuenta?
 						</p>
-							
-					
 					<div class="container-login100-form-btn m-t-25">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
