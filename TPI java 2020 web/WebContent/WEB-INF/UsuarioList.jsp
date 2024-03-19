@@ -9,87 +9,73 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Usuarios</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 </head>
-<body>
-	<a href="index.jsp" class="btn-back">HOME</a>
-	<table>
-		<tr>
-			<th>Nombre</th>
-			<th>Apellido</th>
-			<th>Usuario</th>
-	
-		<%
-			for (Usuario u : lt) {
-		%>
-		<tr>
-			<td><%=u.getNombre()%></td>
-			<td><%=u.getApellido()%></td>
-			<td><%=u.getUsuario()%></td>
-			<td><a href="UsuarioController?action=edit&id=<%=u.getId()%>">Editar</a> | <a href="UsuarioController?action=delete&id=<%=u.getId()%>">Eliminar</a></td>
-		</tr>
-		
-		<%
-			}
-		%>
-		
-	</table>
-	
-	
-<style>
-body {
-display: flex;
-flex-direction: column;
-}
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-  
-}
-.imagen{
-height:120px;
-}
+<body>	<div class="limiter">
+	<div class="container-login100" style="background-image: url('images/cachorros.jpg');">
+		<div class="wrap-login100 login100-form p-l-55 p-r-55 p-t-54 p-b-54">
 
-td, th {
-  border: 1px solid #888888;
-  text-align: left;
-  padding: 8px;
-
-}
-.mascota{
-display:flex;
-  flex-direction: column;
-  }
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-  
-}
-.btn-back, .btn-adopcion {
-	display: inline-table;
-	font-size: 16px; /* Cambiar el tama�o de la tipografia */
-	font-weight: bold; /* Fuente en negrita o bold */
-	color: #ffffff; /* Color del texto */
-	border-radius: 25px; /* Borde del boton */
-	letter-spacing: 2px; /* Espacio entre letras */
-	background-color: #fc00ff ; /* Color de fondo */
-	padding: 10px 25px; /* Relleno del boton */
-	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-	box-sizing: border-box;
-	margin: 1rem;
-	border: none;
-}
-
-
-
-.btn-box {
-display: flex;
-justify-content: center;
-position: fixed;
-width: 100%;
-bottom: 0;
-}
-
-</style>
+			<a href="index.jsp" class="btn-flotante">↩</a>
+				<table class="table" width="100%" cellspacing="0" >
+					<thead>
+						<tr>
+						<th>Id</th>
+						<th>Usuario</th>
+						<th>Nombre</th>
+						<th>Apellido</th>
+						<th>Domicilio</th>
+						<th>Email</th>
+						<th>Tipo D.</th>
+						<th>Documento</th>
+						<th>Localidad </th>
+						<th>Admin</th>
+					</tr>
+					</thead>
+					<tbody>
+					<%
+						for (Usuario u : lt) {
+							if (u.getFechaBaja() == null) {
+					%>
+					<tr>
+						<td><%=u.getId()%></td>
+						<td><%=u.getUsuario()%></td>
+						<td><%=u.getNombre()%></td>
+						<td><%=u.getApellido()%></td>
+						<td><%=u.getDomicilio()%></td>
+						<td><%=u.getEmail()%></td>
+						<td><%=u.getTipoDoc()%></td>
+						<td><%=u.getNroDoc()%></td>
+						<td><%=u.getLocalidad().getNombre()%></td>
+						<td><%=u.getTipo() == 0 ? "Si":"No"%></td>
+					</tr>
+						<%}%>
+						<%}%>
+					</tbody>
+				</table>	
+		</div>
+	</div>
+</div>
 </body>
 </html>

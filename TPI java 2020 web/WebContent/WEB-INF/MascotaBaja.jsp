@@ -42,7 +42,7 @@
 <body>
 	
 	<div class="limiter">
-	<a href="index.jsp" class="btn-flotante">HOME</a>
+	<a href="index.jsp" class="btn-flotante">↩</a>
 	<%if ((e!= null) && (e.equals("Error"))) { %>
 			<div style="position: absolute;">
 				<h2 class="text-center snack-err"><%=em%></h2>

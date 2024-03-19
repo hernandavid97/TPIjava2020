@@ -39,7 +39,7 @@ LinkedList<Localidad> localidades = ctrlLoc.getLocalidades();
 <body>
 	
 	<div class="limiter">
-	<a href="index.jsp" class="btn-flotante">HOME</a>
+	<a href="index.jsp" class="btn-flotante">↩</a>
 	<%if (e != null) { %>
 			<div>
 				<h2 class="text-center snack"><%=e %></h2>

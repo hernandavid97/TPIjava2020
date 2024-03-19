@@ -1,6 +1,6 @@
 <%@page import="entities.Localidad"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +34,7 @@
 <body>
 	
 	<div class="limiter">
-	<a href="index.jsp" class="btn-flotante">HOME</a>
+	<a href="index.jsp" class="btn-flotante">â†©</a>
 	<%if (l != null) { %>
 			<div>
 				<h2 class="text-center snack">Localidad <%=l.getNombre()%> creada con id <%=l.getId()%></h2>
@@ -59,7 +59,7 @@
 						<input class="input100" type="text" name="nombre_localidad" placeholder="Ingrese localidad">						
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate="Contraseña Requerida">
+					<div class="wrap-input100 validate-input" data-validate="Contraseï¿½a Requerida">
 						<span class="label-input100">Provincia</span>
 						<input class="input100" type="text" name="provincia" placeholder="Ingrese provincia">						
 					</div>

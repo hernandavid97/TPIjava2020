@@ -1,6 +1,6 @@
 <%@page import="java.util.LinkedList"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@page import="entities.Mascota"%>
 <%@page import="java.util.ArrayList"%>
@@ -8,11 +8,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Mascotas</title>
 </head>
 <body>
-	<a href="index.jsp" class="btn-back">HOME</a>
+	<a href="index.jsp" class="btn-back">↩</a>
 	<table class="table" width="100%" cellspacing="0">
 		<thead>
 			<tr>

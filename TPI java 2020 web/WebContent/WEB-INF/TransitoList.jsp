@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@page import="entities.Transito"%>
 <%@page import="java.util.ArrayList"%>
@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Transitos</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
 				<th>Mascota</th>
 				<th>fecha_hora_donacion</th>
 				<th>Donante</th>
-				<th>En adopción?</th>
+				<th>En adopciÃ³n?</th>
 				<th>Adoptado Por:</th>
 				<th>fecha_hora_adopcion</th>
 				<th>Elegir</th>
