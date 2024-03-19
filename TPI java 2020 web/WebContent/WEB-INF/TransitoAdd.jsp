@@ -83,7 +83,7 @@ LinkedList<Localidad> localidades= ctrlLoc.getLocalidades();
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn">
-								Donar!
+								Dar en adopción
 							</button>
 						</div>
 					</div>	

@@ -33,7 +33,7 @@ public class DbConnector {
 	public Connection getConn() {
 		try {
 			if(conn==null || conn.isClosed()) {
-				conn=DriverManager.getConnection("jdbc:mysql://localhost/adoptar?user=web&password=himitsu&serverTimezone=UTC");
+				conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/adoptar?user=root&password=admin&serverTimezone=UTC");
 				conectados=0;
 			}
 		} catch (SQLException e) {

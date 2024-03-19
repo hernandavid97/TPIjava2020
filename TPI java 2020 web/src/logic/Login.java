@@ -3,7 +3,11 @@ package logic;
 import java.sql.Date;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
+import data.DataTransito;
 import data.DataUsuario;
+import entities.Transito;
 import entities.Usuario;
 
 public class Login {
@@ -37,4 +41,9 @@ public class Login {
 			return (du.bajaUsuario(old, old));			
 		}else return ("Error al borrar usuario");
 	}
+	
+	public static ArrayList<Usuario> getAll(){
+		return new DataUsuario().getAll();
+	}
+	
 }
