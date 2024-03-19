@@ -11,7 +11,7 @@
 <title>Transitos</title>
 </head>
 <body>
-	<a href="index.jsp" class="btn-back">HOME</a>
+	<a href="index.jsp" class="btn-back">↩</a>
 	<form action="adopcion" method="post">
 	<table class="table" width="100%" cellspacing="0">
 		<thead>
