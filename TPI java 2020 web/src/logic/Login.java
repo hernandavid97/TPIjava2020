@@ -29,14 +29,12 @@ public class Login {
 	}
 	
 	public String validaModif(Usuario nuevo, Usuario old) {
-		//System.out.println("id en ctrl "+nuevo.getLocalidad().getId());
 		if (du.getOne(nuevo) != null) {			
 			return (du.updateUsuario(nuevo, old));			
 		}else return ("Error al modificar usuario");
 	}
 	
 	public String validaBaja(Usuario old) {
-		//System.out.println("id en ctrl "+nuevo.getLocalidad().getId());
 		if (du.getOne(old) != null) {			
 			return (du.bajaUsuario(old, old));			
 		}else return ("Error al borrar usuario");

@@ -44,11 +44,11 @@
 					<thead>
 					<tr>
 						<th>Mascota</th>
-						<th>Fecha y hora transito </th>
+						<th>Fecha publicación </th>
 						<th>Donante</th>
 						<th>En adopción?</th>
 						<th>Adoptado por</th>
-						<th>Fecha y hora adopción</th>
+						<th>Fecha Adopción</th>
 						<th>Elegir</th>
 					</tr>
 					</thead>
