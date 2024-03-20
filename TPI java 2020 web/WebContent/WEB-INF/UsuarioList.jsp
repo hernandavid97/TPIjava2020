@@ -1,15 +1,14 @@
-<%@page import="java.util.LinkedList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@page import="entities.Mascota"%>
+<%@page import="entities.Usuario"%>
 <%@page import="java.util.ArrayList"%>
-<%LinkedList<Mascota> lm = (LinkedList<Mascota>) request.getAttribute("listaMascotas");%>
+<%ArrayList<Usuario> lt = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-
+<meta charset="ISO-8859-1">
+<title>Usuarios</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
 <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -33,46 +32,50 @@
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
-
-<title>Mascotas</title>
 </head>
-<body>
-<div class="limiter">
+<body>	<div class="limiter">
 	<div class="container-login100" style="background-image: url('images/cachorros.jpg');">
 		<div class="wrap-login100 login100-form p-l-55 p-r-55 p-t-54 p-b-54">
+
 			<a href="index.jsp" class="btn-flotante">↩</a>
 				<table class="table" width="100%" cellspacing="0" >
 					<thead>
-					<tr>
+						<tr>
+						<th>Id</th>
+						<th>Usuario</th>
 						<th>Nombre</th>
-						<th>Tipo</th>
-						<th>Edad</th>
-						<th>Color</th>
-						<th>Imagenes</th>
+						<th>Apellido</th>
+						<th>Domicilio</th>
+						<th>Email</th>
+						<th>Tipo D.</th>
+						<th>Documento</th>
+						<th>Localidad </th>
+						<th>Admin</th>
 					</tr>
 					</thead>
 					<tbody>
 					<%
-					for (Mascota m : lm) {
+						for (Usuario u : lt) {
+							if (u.getFechaBaja() == null) {
 					%>
 					<tr>
-				<td><%=m.getNombre()%></td>
-				<td><%=m.getTipo()%></td>
-				<td><%=m.getEdad()%></td>
-				<td><%=m.getColor()%></td>
-				<td><img class="imagen" src="<%=m.getImagenes()%>" /></td>
+						<td><%=u.getId()%></td>
+						<td><%=u.getUsuario()%></td>
+						<td><%=u.getNombre()%></td>
+						<td><%=u.getApellido()%></td>
+						<td><%=u.getDomicilio()%></td>
+						<td><%=u.getEmail()%></td>
+						<td><%=u.getTipoDoc()%></td>
+						<td><%=u.getNroDoc()%></td>
+						<td><%=u.getLocalidad().getNombre()%></td>
+						<td><%=u.getTipo() == 0 ? "Si":"No"%></td>
 					</tr>
+						<%}%>
 						<%}%>
 					</tbody>
 				</table>	
 		</div>
 	</div>
 </div>
-	<style>
-.imagen{
-height:120px;
-}
-
-</style>
 </body>
 </html>

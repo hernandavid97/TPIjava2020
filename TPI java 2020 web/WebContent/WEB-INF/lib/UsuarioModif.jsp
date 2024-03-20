@@ -42,7 +42,7 @@ LinkedList<Localidad> localidades= ctrlLoc.getLocalidades();
 <body>
 	
 	<div class="limiter">
-	<a href="index.jsp" class="btn-flotante">HOME</a>
+	<a href="index.jsp" class="btn-flotante">â†©</a>
 	<%if (e != null) { %>
 			<div>
 				<h2 class="text-center snack"><%=e %></h2>
@@ -66,9 +66,9 @@ LinkedList<Localidad> localidades= ctrlLoc.getLocalidades();
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input m-b-15" data-validate="Contraseña Requerida">
-						<span class="label-input100">Contraseña</span>
-						<input class="input100" type="password" name="pass" placeholder="Ingrese su contraseña">
+					<div class="wrap-input100 validate-input m-b-15" data-validate="Contraseï¿½a Requerida">
+						<span class="label-input100">Contraseï¿½a</span>
+						<input class="input100" type="password" name="pass" placeholder="Ingrese su contraseï¿½a">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					

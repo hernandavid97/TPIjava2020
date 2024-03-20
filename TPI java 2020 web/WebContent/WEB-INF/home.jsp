@@ -3,7 +3,7 @@
     pageEncoding="ISO-8859-1"%>
 
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="es">
 
 <head>
 	<title>Home - AdoptAr</title>
@@ -61,22 +61,40 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/cachorros.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-40 p-b-54">
-				<h2 class="p-b-40" style="font-weight: 700;">Bienvenido  <%= u.getNombre().toUpperCase() %> <%=u.getApellido().toUpperCase() %> </h2>
+				<h2 class="p-b-40" style="font-weight: 700;">Bienvenido  <%= u.getNombre() %> <%=u.getApellido() %> </h2>
 				<%if (u.getTipo()==0){ %>
-					<a href="localidadlist">Listado de localidades</a><br> <br>
-					<a href="localidadadd">Alta Localidad</a><br> <br>
-					<a href="localidadmod">Modificar Localidad</a><br><br>
-					<a href="localidaddelete">Baja Localidad</a> <br> <br>
-					<a href="mascotadelete">Baja Mascota</a> <br> <br>
-				<%} %>
+				<a href="usuariolist">Listado de Usuarios</a><br> <br>
+				<a href="registro">Alta Usuario</a><br> <br>
+				<a href="localidadlist">Listado de localidades</a><br> <br>
+				<a href="localidadadd">Alta Localidad</a><br> <br>
+				<a href="localidadmod">Modificar Localidad</a><br><br>
+				<a href="localidaddelete">Baja Localidad</a> <br> <br>
+				<div style="border: 1px solid white; width: 100%; height: 0px; margin-bottom: 20px;"></div>
 				<a href="transitolist">Listado de Transitos</a><br> <br>
 				<a href="mascotalist">Listado de Mascotas</a><br> <br>				
-				<a href="mascotamod">Modificar Mascotas</a> <br> <br>
 				<a href="transitoadd">Publicar mascota en adopcion</a><br> <br>
+				<a href="mascotamod">Modificar Mascotas</a> <br> <br>
+				<a href="mascotadelete">Baja Mascota</a> <br> <br>
 				<div style="border: 1px solid white; width: 100%; height: 0px; margin-bottom: 20px;"></div>
 				<a href="usuariomod">Modificar datos de Usuario</a><br> <br>
 				<a href="usuariobaj">Borrar Cuenta</a><br> <br>
-				<a href="logout">Cerrar Sesión</a><br> <br>
+				<a href="logout">Cerrar Sesion</a><br> <br>
+		   <%
+        } else {
+    %>
+		<a href="transitolist">Listado de Transitos</a><br> <br>
+		<a href="mascotalist">Listado de Mascotas</a><br> <br>				
+		<a href="mascotamod">Modificar Mascotas</a> <br> <br>
+		<a href="transitoadd">Publicar mascota en adopcion</a><br> <br>
+		<div style="border: 1px solid white; width: 100%; height: 0px; margin-bottom: 20px;"></div>
+		<a href="usuariomod">Modificar datos de Usuario</a><br> <br>
+		<a href="usuariobaj">Borrar Cuenta</a><br> <br>
+		<a href="logout">Cerrar Sesion</a><br> <br>
+    <%
+        }
+    %>
+				
+				
 			</div>
 		</div>
 	</div>

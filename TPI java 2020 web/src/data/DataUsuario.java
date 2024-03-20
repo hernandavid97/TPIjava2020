@@ -2,6 +2,7 @@ package data;
 
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import entities.Localidad;
 import entities.Usuario;
@@ -225,4 +226,44 @@ public class DataUsuario {
 		}
 		return("Usuario " + old.getId() + " modificado correctamente");
     }
+	public ArrayList<Usuario> getAll() {
+		Statement stmt=null;
+		ResultSet rs=null;
+		ArrayList<Usuario> usuarios= new ArrayList<Usuario>();
+		try {
+			stmt = DbConnector.getInstancia().getConn().createStatement();
+			rs = stmt.executeQuery("select id_usuario,usuario,nombre,apellido,tipo_doc,nro_doc,email,is_adoptante,is_donante,localidad,tipo,domicilio,fecha_baja from usuario");
+			if(rs!=null) {
+				while(rs.next()) {
+					Usuario p=new Usuario();
+					p.setNroDoc(rs.getNString("nro_doc"));
+					p.setTipoDoc(rs.getNString("tipo_doc"));
+					p.setId(rs.getInt("id_usuario"));
+					p.setUsuario(rs.getNString("usuario"));
+					p.setNombre(rs.getString("nombre"));
+					p.setApellido(rs.getString("apellido"));	
+					p.setEmail(rs.getString("email"));
+					p.setDomicilio(rs.getString("domicilio"));
+					p.setDonante(rs.getBoolean("is_donante"));
+					p.setAdoptante(rs.getBoolean("is_adoptante"));
+					p.setTipo(rs.getInt("tipo"));
+					p.setFechaBaja(rs.getString("fecha_baja"));
+					DataLocalidad dl=new DataLocalidad();
+					dl.setLocalidad(p);
+					usuarios.add(p);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return usuarios;
+	}
 }

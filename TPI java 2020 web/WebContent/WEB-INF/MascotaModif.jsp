@@ -2,12 +2,12 @@
 <%@page import="entities.Mascota"%>
 <%@page import="logic.CtrlMas"%>
 <%@page import="java.util.LinkedList"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Modif mascota</title>
+	<title>Modificar mascota</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -41,7 +41,7 @@ LinkedList<Mascota> mascotas = ctrlMas.getMascotasByUser(u.getId());
 <body>
 	
 	<div class="limiter">
-	<a href="index.jsp" class="btn-flotante">HOME</a>
+	<a href="index.jsp" class="btn-flotante">↩</a>
 	<%if (e != null) { %>
 			<div>
 				<h2 class="text-center snack"><%=e %></h2>

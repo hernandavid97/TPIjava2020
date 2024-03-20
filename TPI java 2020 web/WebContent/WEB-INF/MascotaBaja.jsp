@@ -3,8 +3,8 @@
 <%@page import="java.util.LinkedList"%>
 <%@page import="logic.CtrlLoc"%>
 <%@page import="entities.Localidad"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +42,7 @@
 <body>
 	
 	<div class="limiter">
-	<a href="index.jsp" class="btn-flotante">HOME</a>
+	<a href="index.jsp" class="btn-flotante">↩</a>
 	<%if ((e!= null) && (e.equals("Error"))) { %>
 			<div style="position: absolute;">
 				<h2 class="text-center snack-err"><%=em%></h2>

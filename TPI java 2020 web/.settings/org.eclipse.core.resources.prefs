@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//WebContent/WEB-INF=UTF-8
+encoding//WebContent/WEB-INF/LocalidadAdd.jsp=UTF-8
+encoding//WebContent/WEB-INF/LocalidadBaja.jsp=UTF-8
+encoding//WebContent/WEB-INF/LocalidadListado.jsp=UTF-8
+encoding//WebContent/WEB-INF/LocalidadModif.jsp=UTF-8
+encoding//WebContent/WEB-INF/MascotaBaja.jsp=UTF-8
+encoding//WebContent/WEB-INF/MascotaList.jsp=UTF-8
+encoding//WebContent/WEB-INF/MascotaModif.jsp=UTF-8
+encoding//WebContent/WEB-INF/UsuarioList.jsp=UTF-8
+encoding//WebContent/WEB-INF/home.jsp=UTF-8

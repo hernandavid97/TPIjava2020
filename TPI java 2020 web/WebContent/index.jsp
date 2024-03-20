@@ -1,6 +1,6 @@
 <%@page import="entities.Usuario"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,15 +60,15 @@
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate="Contraseña Requerida">
-						<span class="label-input100">Contraseña</span>
-						<input class="input100" type="password" name="pass" placeholder="Ingrese su contraseña">
+					<div class="wrap-input100 validate-input" data-validate="ContraseÃ±a Requerida">
+						<span class="label-input100">ContraseÃ±a</span>
+						<input class="input100" type="password" name="pass" placeholder="Ingrese su contraseÃ±a">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					
 					<div class="text-right p-t-8 p-b-31">
 						<a href="#">
-							Olvidó su contraseña?
+							OlvidÃ³ su contraseÃ±a?
 						</a>
 					</div>
 					

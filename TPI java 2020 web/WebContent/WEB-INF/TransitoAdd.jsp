@@ -1,8 +1,8 @@
 <%@page import="entities.Localidad"%>
 <%@page import="logic.CtrlLoc"%>
 <%@page import="java.util.LinkedList"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +38,7 @@ LinkedList<Localidad> localidades= ctrlLoc.getLocalidades();
 <body>
 	
 	<div class="limiter">
-	<a href="index.jsp" class="btn-flotante">HOME</a>
+	<a href="index.jsp" class="btn-flotante">↩</a>
 		<div class="container-login100" style="background-image: url('images/cachorros.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				<form class="login100-form validate-form" action="transitoadd" method="post">
@@ -83,7 +83,7 @@ LinkedList<Localidad> localidades= ctrlLoc.getLocalidades();
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn">
-								Donar!
+								Dar en adopción
 							</button>
 						</div>
 					</div>	
