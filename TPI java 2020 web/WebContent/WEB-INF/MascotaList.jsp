@@ -44,7 +44,6 @@
 				<table class="table" width="100%" cellspacing="0" >
 					<thead>
 					<tr>
-						<th>Id</th>
 						<th>Nombre</th>
 						<th>Tipo</th>
 						<th>Edad</th>
@@ -57,7 +56,6 @@
 					for (Mascota m : lm) {
 					%>
 					<tr>
-			<td><%=m.getId()%></td>
 				<td><%=m.getNombre()%></td>
 				<td><%=m.getTipo()%></td>
 				<td><%=m.getEdad()%></td>
@@ -70,6 +68,11 @@
 		</div>
 	</div>
 </div>
+	<style>
+.imagen{
+height:120px;
+}
 
+</style>
 </body>
 </html>
