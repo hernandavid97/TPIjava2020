@@ -3,7 +3,6 @@ package data;
 import java.sql.*;
 import java.util.LinkedList;
 
-import data.DbConnector;
 import entities.Usuario;
 import entities.Localidad;
 

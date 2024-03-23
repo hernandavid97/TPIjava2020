@@ -1,13 +1,8 @@
 package logic;
 
-import java.sql.Date;
-import java.text.Format;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import data.DataTransito;
 import data.DataUsuario;
-import entities.Transito;
 import entities.Usuario;
 
 public class Login {
