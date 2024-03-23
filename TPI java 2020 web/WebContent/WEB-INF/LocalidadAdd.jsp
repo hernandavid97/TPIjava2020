@@ -37,7 +37,7 @@
 	<a href="index.jsp" class="btn-flotante">↩</a>
 	<%if (l != null) { %>
 			<div>
-				<h2 class="text-center snack">Localidad <%=l.getNombre()%> creada con id <%=l.getId()%></h2>
+				<h2 class="text-center snack">Localidad <%=l.getNombre()%> creada</h2>
 			</div>
 			<% } %>
 		<div class="container-login100" style="background-image: url('images/cachorros.jpg');">

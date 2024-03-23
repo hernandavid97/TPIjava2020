@@ -189,7 +189,7 @@ public class DataUsuario {
             	e.printStackTrace();
             }
 		}
-		return("Usuario " + old.getId() + " modificado correctamente");
+		return("Usuario " + nuevo.getUsuario() + " modificado correctamente");
     }
 	
 	public String bajaUsuario(Usuario nuevo, Usuario old) {
@@ -204,9 +204,6 @@ public class DataUsuario {
 							);
 			stmt.setString(1, nuevo.getFechaBaja());
 			stmt.setInt(2, old.getId());			
-			System.out.println("seteados" + nuevo.toString());
-			System.out.println("id vieja:" + old.getId());
-			System.out.println("id loc:" + loc.getId());
 			stmt.executeUpdate();			
 			keyResultSet=stmt.getGeneratedKeys();
             if(keyResultSet!=null && keyResultSet.next()){
@@ -224,7 +221,7 @@ public class DataUsuario {
             	e.printStackTrace();
             }
 		}
-		return("Usuario " + old.getId() + " modificado correctamente");
+		return("Usuario eliminado correctamente");
     }
 	public ArrayList<Usuario> getAll() {
 		Statement stmt=null;

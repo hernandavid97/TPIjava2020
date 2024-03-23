@@ -45,7 +45,7 @@
 					<thead>
 					<tr>
 						<th>Nombre</th>
-						<th>Tipo</th>
+						<th>Especie</th>
 						<th>Edad</th>
 						<th>Color</th>
 						<th>Imagenes</th>

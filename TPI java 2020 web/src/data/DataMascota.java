@@ -192,7 +192,7 @@ public class DataMascota {
             e.printStackTrace();
             System.out.println(e);
             if(e.getMessage().contains("foreign key constraint fails")) {
-            	throw new Exception("No se pueden eliminar macotas que ya han sido adoptadas");            	
+            	throw new Exception("No se pueden eliminar mascotas que ya han sido adoptadas");            	
             }
             throw e;
 		} finally {
@@ -206,9 +206,7 @@ public class DataMascota {
             	e.printStackTrace();            	
             }
 		}
-		System.out.println("id mascota borrada " + m.getId());
-		String r = String.valueOf(m.getId());
-		return ("Mascota "+ r + " Borrada");
+		return ("Mascota Borrada");
     }
 	public String updateMascota(Mascota nueva, Mascota old) {
 		PreparedStatement stmt= null;
@@ -246,6 +244,6 @@ public class DataMascota {
             	e.printStackTrace();
             }
 		}
-		return("Macota " + old.getId() + " modificada correctamente");
+		return("Mascota " + nueva.getNombre() + " modificada correctamente");
     }
 }

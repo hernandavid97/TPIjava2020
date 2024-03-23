@@ -156,7 +156,6 @@ public class DataLocalidad {
 							);
 			stmt.setString(1, l.getNombre());
 			stmt.setString(2, l.getProvincia());
-			System.out.println("seteados" + l.toString());
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();
@@ -176,7 +175,6 @@ public class DataLocalidad {
             	e.printStackTrace();
             }
 		}
-		System.out.println("id creada " + l.getId());
 		return l.getId();
     }
 	
@@ -190,7 +188,6 @@ public class DataLocalidad {
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setInt(1, l.getId());			
-			System.out.println("seteados" + l.toString());
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();
@@ -201,7 +198,6 @@ public class DataLocalidad {
 			
 		}  catch (SQLException e) {
             e.printStackTrace();
-            System.out.println(e);
             throw new Exception("Ha ocurrido un error al dar de baja la localidad, no pueden eliminar localidades activas");
 		} finally {
             try {
@@ -212,9 +208,7 @@ public class DataLocalidad {
             	e.printStackTrace();            	
             }
 		}
-		System.out.println("id borrada " + l.getId());
-		String r = String.valueOf(l.getId());
-		return ("Localidad "+ r + " Borrada");
+		return ("Localidad Borrada");
     }
 	
 	public String updateLocalidad(Localidad nueva, Localidad old) {
@@ -229,7 +223,6 @@ public class DataLocalidad {
 			stmt.setString(1, nueva.getNombre());
 			stmt.setString(2, nueva.getProvincia());
 			stmt.setInt(3, old.getId());
-			System.out.println("seteados" + nueva.toString());
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();
@@ -250,6 +243,6 @@ public class DataLocalidad {
             	e.printStackTrace();
             }
 		}
-		return("Localidad " + old.getId() + " modificada correctamente");
+		return("Localidad " +  nueva.getNombre() + " modificada correctamente");
     }
 }

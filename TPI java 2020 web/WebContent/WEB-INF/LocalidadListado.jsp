@@ -48,7 +48,7 @@ LinkedList<Localidad> localidades = ctrlLoc.getLocalidades();
 						<thead>
 							<tr>
 							<th>ID</th>
-							<th>Nombre</th>
+							<th>Localidad</th>
 							<th>Provincia</th>				
 							</tr>
 						</thead>

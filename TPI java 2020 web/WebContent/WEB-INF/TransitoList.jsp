@@ -44,6 +44,7 @@
 					<thead>
 					<tr>
 						<th>Mascota</th>
+						<th>Especie</th>
 						<th>Fecha publicación </th>
 						<th>Donante</th>
 						<th>En adopción?</th>
@@ -58,6 +59,7 @@
 					%>
 					<tr>
 						<td class="mascota"><span><%=t.getMascota().getNombre()%></span><img class="imagen" src="<%=t.getMascota().getImagenes()%>" /></td>
+						<td><%=t.getMascota().getTipo()%></td>
 						<td><%=t.getFechaHoraDonacion()%></td>
 						<td><%=t.getDonante().getNombre()%></td>
 						<td><%=t.getAdoptante() == null ? "Si" : "No" %></td>
