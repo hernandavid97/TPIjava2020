@@ -39,16 +39,17 @@
 <body>
 <div class="limiter">
 	<div class="container-login100" style="background-image: url('images/cachorros.jpg');">
-		<div class="wrap-login100 login100-form p-l-55 p-r-55 p-t-54 p-b-54">
+		<div class="max-w-wrapper wrap-login100 login100-form p-l-55 p-r-55 p-t-54 p-b-54">
 			<a href="index.jsp" class="btn-flotante">↩</a>
-				<table class="table" width="100%" cellspacing="0" >
+				<table class="table" width="70%" cellspacing="0" >
 					<thead>
 					<tr>
+						<th>Foto</th>
 						<th>Nombre</th>
 						<th>Especie</th>
 						<th>Edad</th>
 						<th>Color</th>
-						<th>Imagenes</th>
+				
 					</tr>
 					</thead>
 					<tbody>
@@ -56,12 +57,13 @@
 					for (Mascota m : lm) {
 					%>
 					<tr>
+					<td><img class="imagen" src="<%=m.getImagenes()%>" /></td>
+					
 				<td><%=m.getNombre()%></td>
 				<td><%=m.getTipo()%></td>
 				<td><%=m.getEdad()%></td>
 				<td><%=m.getColor()%></td>
-				<td><img class="imagen" src="<%=m.getImagenes()%>" /></td>
-					</tr>
+				</tr>
 						<%}%>
 					</tbody>
 				</table>	
@@ -69,9 +71,24 @@
 	</div>
 </div>
 	<style>
+	
+	.table thead th {
+		width: 20%,
+		
+	}
+	.max-w-wrapper {
+		max-width: 1200px;
+		margin: auto;
+		}
 .imagen{
-height:120px;
+max-height:400px;
+max-width:400px;
+
 }
+td{
+width:1px;
+}
+
 
 </style>
 </body>
