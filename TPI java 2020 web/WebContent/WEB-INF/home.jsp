@@ -75,6 +75,7 @@
 				<a href="transitoadd">Publicar mascota en adopcion</a><br> <br>
 				<a href="mascotamod">Modificar Mascotas</a> <br> <br>
 				<a href="mascotadelete">Baja Mascota</a> <br> <br>
+				<a href="vacunalist">Listado de Vacunas</a><br> <br>
 				<div style="border: 1px solid white; width: 100%; height: 0px; margin-bottom: 20px;"></div>
 				<a href="usuariomod">Modificar datos de Usuario</a><br> <br>
 				<a href="usuariobaj">Borrar Cuenta</a><br> <br>

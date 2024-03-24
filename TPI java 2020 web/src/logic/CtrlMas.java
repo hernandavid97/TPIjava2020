@@ -3,7 +3,6 @@ package logic;
 import java.util.LinkedList;
 
 import data.DataMascota;
-import entities.Localidad;
 import entities.Mascota;
 
 public class CtrlMas {

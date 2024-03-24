@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entities.Transito;
-import logic.TransitoLogic;
+import entities.Vacuna;
+import logic.VacunaLogic;
 
 /**
  * Servlet implementation class TransitoList
  */
-@WebServlet({ "/TransitoList", "/transitolist" })
-public class TransitoList extends HttpServlet {
+@WebServlet({ "/VacunaList", "/vacunalist" })
+public class VacunaList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TransitoList() {
+    public VacunaList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,9 +32,9 @@ public class TransitoList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-    	ArrayList<Transito> transitos = TransitoLogic.getAll();
-    	request.setAttribute("listaTransitos", transitos);
-		request.getRequestDispatcher("/WEB-INF/TransitoList.jsp").forward(request, response);
+    	ArrayList<Vacuna> vacunas = VacunaLogic.getAll();
+    	request.setAttribute("listaVacunas", vacunas);
+		request.getRequestDispatcher("/WEB-INF/VacunaList.jsp").forward(request, response);
 	}
 
 	/**

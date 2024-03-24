@@ -4,12 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
-import entities.Localidad;
 import entities.Mascota;
-import entities.Transito;
 
 public class DataMascota {
 	public LinkedList<Mascota> getAll() {
