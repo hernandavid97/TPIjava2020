@@ -79,8 +79,8 @@ ArrayList<Transito> lt = (ArrayList<Transito>) request.getAttribute("listaTransi
 								<td>
 									<%
 									if (t.getAdoptante() == null) {
-									%> <input type="radio"
-									name="seleccionada" value="<%=t.getId()%>"> <%
+									%> <input type="radio" name="seleccionada"
+									value="<%=t.getId()%>"> <%
  }
  %>
 								</td>

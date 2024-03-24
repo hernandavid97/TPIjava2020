@@ -121,7 +121,6 @@ public class DataUsuario {
 			stmt.setInt(10, u.getLocalidad().getId());
 			stmt.setInt(11, u.getTipo());
 			stmt.setString(12, u.getDomicilio());
-			System.out.println("seteados" + u.toString());
 			stmt.executeUpdate();
 
 			keyResultSet = stmt.getGeneratedKeys();
@@ -142,7 +141,6 @@ public class DataUsuario {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("id creada " + u.getId());
 		return u.getId();
 	}
 

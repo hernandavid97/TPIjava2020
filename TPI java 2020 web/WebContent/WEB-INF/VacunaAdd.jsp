@@ -38,62 +38,58 @@
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<%
+boolean existe = (boolean) request.getAttribute("existe");
+%>
 </head>
 <body>
 
 	<div class="limiter">
 		<a href="index.jsp" class="btn-flotante">↩</a>
+		<%
+		if (existe) {
+		%>
+		<div>
+			<h2 class="text-center snack">Vacuna creada</h2>
+		</div>
+		<%
+		}
+		%>
 		<div class="container-login100"
 			style="background-image: url('images/cachorros.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form" action="transitoadd"
+				<form class="login100-form validate-form" action="vacunaadd"
 					method="post">
 					<span class="login100-form-title p-b-10"> AdoptAr </span> <span
 						class="login100-form-subtitle p-b-39"> Mascotas felices en
 						hogares felices! </span>
-
+					<p class="text-center txt2 m-b-15">Agregar Vacuna</p>
 					<div class="wrap-input100 validate-input m-b-15"
 						data-validate="Nombre requerido">
-						<span class="label-input100">Nombre</span> <input class="input100"
-							type="text" name="nombre_mascota"
-							placeholder="Ingrese el nombre de la mascota"> <span
+						<span class="label-input100">Titulo</span> <input class="input100"
+							type="text" name="titulo" placeholder="Monovalente"> <span
 							class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-15"
 						data-validate="Especie requerida">
 						<span class="label-input100">Especie</span> <input
-							class="input100" type="text" name="tipo"
-							placeholder="Ingrese la especie"> <span
-							class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
-
-					<div class="wrap-input100 m-b-15">
-						<span class="label-input100">Edad</span> <input class="input100"
-							type="number" name="edad"
-							placeholder="Ingrese la edad de la mascota"> <span
-							class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-15"
-						data-validate="Color requerido">
-						<span class="label-input100">Color</span> <input class="input100"
-							type="text" name="color" placeholder="Ingrese el color">
+							class="input100" type="text" name="especie" placeholder="Gato">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
-
 					<div class="wrap-input100 validate-input m-b-15"
-						data-validate="Cargue por lo menos una imagen">
-						<span class="label-input100">Links de Imagenes (separados
-							por coma)</span> <input class="input100" type="text" name="imagenes"
-							placeholder="Ingrese el link de la imagen"> <span
-							class="focus-input100" data-symbol="&#xf206;"></span>
+						data-validate="Especie requerida">
+						<span class="label-input100">Descripcion</span> <input
+							class="input100" type="text" name="descripcion"
+							placeholder="Parvovirus"> <span class="focus-input100"
+							data-symbol="&#xf206;"></span>
 					</div>
+
 
 					<div class="container-login100-form-btn m-t-25">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">Dar en adopción</button>
+							<button class="login100-form-btn">Agregar</button>
 						</div>
 					</div>
 				</form>
