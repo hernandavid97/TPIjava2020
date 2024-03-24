@@ -57,7 +57,7 @@ CREATE TABLE `localidad` (
   `nombre_localidad` varchar(45) NOT NULL,
   `provincia` varchar(45) NOT NULL,
   PRIMARY KEY (`id_localidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `localidad` (
 
 LOCK TABLES `localidad` WRITE;
 /*!40000 ALTER TABLE `localidad` DISABLE KEYS */;
-INSERT INTO `localidad` VALUES (1,'Rosario','Santa Fe'),(2,'Funes','Santa Fe'),(3,'Victoria','Entre Rios'),(6,'San Lorenzo','Santa Fe'),(9,'Recoleta','CABA'),(10,'Santa Fe','Santa Fe'),(11,'Retiro','CABA');
+INSERT INTO `localidad` VALUES (1,'Rosario','Santa Fe'),(2,'Funes','Santa Fe'),(3,'Victoria','Entre Rios'),(6,'San Lorenzo','Santa Fe'),(9,'Recoleta','CABA'),(10,'Santa Fe','Santa Fe'),(11,'Retiro','CABA'),(12,'jjj','jj');
 /*!40000 ALTER TABLE `localidad` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,12 +203,12 @@ DROP TABLE IF EXISTS `vacuna`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vacuna` (
-  `id_vacuna` int NOT NULL,
+  `id_vacuna` int NOT NULL AUTO_INCREMENT,
   `titulo` varchar(45) NOT NULL,
   `especie` varchar(45) NOT NULL,
   `descripcion` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_vacuna`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +217,7 @@ CREATE TABLE `vacuna` (
 
 LOCK TABLES `vacuna` WRITE;
 /*!40000 ALTER TABLE `vacuna` DISABLE KEYS */;
-INSERT INTO `vacuna` VALUES (1,'Trivalente','Gato',NULL),(2,'Leucemia ','Gato',NULL),(3,'Rabia','Gato',NULL),(4,'Monovalente ','Perro','Parvovirus'),(5,'Bivalente','Perro','(parvovirus y moquillo)'),(6,'Rabia','Perro',NULL);
+INSERT INTO `vacuna` VALUES (1,'Trivalente','Gato',NULL),(2,'Leucemia ','Gato',NULL),(3,'Rabia','Gato',NULL),(4,'Monovalente ','Perro','Parvovirus'),(5,'Bivalente','Perro','(parvovirus y moquillo)'),(6,'Rabia','Perro',NULL),(7,'kkk','kkk','k'),(8,'asd','asd','asd'),(9,'a','a','a'),(10,'a','a','a'),(11,'a','a','a'),(12,'asd','asd','asddd'),(13,'aaa','aaa','aaa');
 /*!40000 ALTER TABLE `vacuna` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,16 +229,16 @@ DROP TABLE IF EXISTS `vacunacion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vacunacion` (
-  `id_vacunacion` int NOT NULL,
+  `id_vacunacion` int NOT NULL AUTO_INCREMENT,
   `id_mascota` int DEFAULT NULL,
   `id_vacuna` int DEFAULT NULL,
   `fecha_vacunacion` date DEFAULT NULL,
   PRIMARY KEY (`id_vacunacion`),
   KEY `id_mascota_idx` (`id_mascota`) /*!80000 INVISIBLE */,
-  KEY `id_vacuna_idx` (`id_vacuna`),
+  KEY `fk_vacuna_idx` (`id_vacuna`),
   CONSTRAINT `fk_mascota` FOREIGN KEY (`id_mascota`) REFERENCES `mascota` (`id_mascota`),
   CONSTRAINT `fk_vacuna` FOREIGN KEY (`id_vacuna`) REFERENCES `vacuna` (`id_vacuna`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -260,4 +260,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-23 15:23:09
+-- Dump completed on 2024-03-24 16:53:28
