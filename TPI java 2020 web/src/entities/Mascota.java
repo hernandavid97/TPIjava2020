@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.LinkedList;
+
 public class Mascota {
 	private int id_mascota;
 	private String nombre;
@@ -8,6 +10,7 @@ public class Mascota {
 	private int edad;
 	private String imagenes;
 	private boolean disponible;
+	private LinkedList<Vacunacion> vacunaciones;
 	
 	public int getId() {
 		return id_mascota;
@@ -63,6 +66,14 @@ public class Mascota {
 	
 	public void setImagenes(String i) {
 		imagenes = i;
+	}
+
+	public LinkedList<Vacunacion> getVacunaciones() {
+		return vacunaciones;
+	}
+
+	public void setVacunaciones(LinkedList<Vacunacion> vacunaciones) {
+		this.vacunaciones = vacunaciones;
 	}
 	
 }
