@@ -43,27 +43,27 @@ public class Mascota {
 	public void setId(int id) {
 		id_mascota = id;
 	}
-	
+
 	public void setNombre(String nom) {
 		nombre = nom;
 	}
-	
+
 	public void setTipo(String tip) {
 		tipo_animal = tip;
 	}
-	
+
 	public void setEdad(int e) {
 		edad = e;
 	}
-	
+
 	public void setColor(String c) {
 		color = c;
 	}
-	
+
 	public void setDisponible(boolean d) {
 		disponible = d;
 	}
-	
+
 	public void setImagenes(String i) {
 		imagenes = i;
 	}

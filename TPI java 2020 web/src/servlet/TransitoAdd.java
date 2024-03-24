@@ -19,27 +19,31 @@ import logic.TransitoLogic;
 @WebServlet({ "/TransitoAdd", "/transitoadd" })
 public class TransitoAdd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TransitoAdd() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public TransitoAdd() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.getRequestDispatcher("WEB-INF/TransitoAdd.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Mascota m = new Mascota();
 		Transito t = new Transito();
@@ -50,14 +54,14 @@ public class TransitoAdd extends HttpServlet {
 		m.setColor(request.getParameter("color"));
 		m.setImagenes(request.getParameter("imagenes"));
 		m.setDisponible(true);
-		u = (Usuario)request.getSession().getAttribute("usuario");
-		
+		u = (Usuario) request.getSession().getAttribute("usuario");
+
 		TransitoLogic.insertOne(t, m, u);
-		
-    	ArrayList<Transito> transitos = TransitoLogic.getAll();
-    	request.setAttribute("listaTransitos", transitos);
+
+		ArrayList<Transito> transitos = TransitoLogic.getAll();
+		request.setAttribute("listaTransitos", transitos);
 		request.getRequestDispatcher("/WEB-INF/TransitoList.jsp").forward(request, response);
-		
+
 		request.getRequestDispatcher("WEB-INF/TransitoList.jsp").forward(request, response);
 	}
 }

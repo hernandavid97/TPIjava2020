@@ -13,11 +13,11 @@ public class DataMascota {
 		LinkedList<Mascota> mascotas = new LinkedList<Mascota>();
 		try {
 			String consulta = "select * from mascota";
-			PreparedStatement stmt=DbConnector.getInstancia().getConn().prepareStatement(consulta);
+			PreparedStatement stmt = DbConnector.getInstancia().getConn().prepareStatement(consulta);
 			ResultSet rs = stmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				Mascota m = new Mascota();
-				
+
 				m.setId(rs.getInt("id_mascota"));
 				m.setNombre(rs.getString("nombre"));
 				m.setTipo(rs.getString("tipo_animal"));
@@ -25,36 +25,40 @@ public class DataMascota {
 				m.setColor(rs.getString("color"));
 				m.setImagenes(rs.getString("imagenes"));
 				m.setDisponible(rs.getBoolean("is_disponible"));
-				
+
 				mascotas.add(m);
 			}
-			
-			if(rs!=null){rs.close();}
-			if(stmt!=null){stmt.close();}
+
+			if (rs != null) {
+				rs.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
 			DbConnector.getInstancia().releaseConn();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return mascotas;
 	}
+
 	public LinkedList<Mascota> getByUser(int id_usuario) {
 		System.out.println(id_usuario);
 		LinkedList<Mascota> mascotas = new LinkedList<Mascota>();
 		try {
 			String consulta = "select m.id_mascota, nombre, tipo_animal, edad, color, is_disponible, imagenes "
-					+ "from mascota m "
-					+ "inner join transito t on m.id_mascota = t.id_mascota "
+					+ "from mascota m " + "inner join transito t on m.id_mascota = t.id_mascota "
 					+ "where id_donante = ?";
-			PreparedStatement stmt  = DbConnector.getInstancia().getConn().prepareStatement(consulta);
+			PreparedStatement stmt = DbConnector.getInstancia().getConn().prepareStatement(consulta);
 			stmt.setInt(1, id_usuario);
 			ResultSet rs = stmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				Mascota m = new Mascota();
-				
+
 				m.setId(rs.getInt("id_mascota"));
 				m.setNombre(rs.getString("nombre"));
 				m.setTipo(rs.getString("tipo_animal"));
@@ -62,34 +66,39 @@ public class DataMascota {
 				m.setColor(rs.getString("color"));
 				m.setImagenes(rs.getString("imagenes"));
 				m.setDisponible(rs.getBoolean("is_disponible"));
-				
+
 				mascotas.add(m);
 			}
-			
-			if(rs!=null){rs.close();}
-			if(stmt!=null){stmt.close();}
+
+			if (rs != null) {
+				rs.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
 			DbConnector.getInstancia().releaseConn();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return mascotas;
 	}
+
 	public Mascota getOne(int id_mascota) {
-		Mascota m=null;
+		Mascota m = null;
 		try {
 
 			String consulta = "select * from mascota where id_mascota = ? ";
-			PreparedStatement stmt=DbConnector.getInstancia().getConn().prepareStatement(consulta);
+			PreparedStatement stmt = DbConnector.getInstancia().getConn().prepareStatement(consulta);
 			stmt.setString(1, Integer.toString(id_mascota));
 			ResultSet rs = stmt.executeQuery();
 
-			while(rs.next()) {
-				m=new Mascota();
-				
+			while (rs.next()) {
+				m = new Mascota();
+
 				m.setId(rs.getInt("id_mascota"));
 				m.setNombre(rs.getString("nombre"));
 				m.setTipo(rs.getString("tipo_animal"));
@@ -97,28 +106,33 @@ public class DataMascota {
 				m.setColor(rs.getString("color"));
 				m.setImagenes(rs.getString("imagenes"));
 				m.setDisponible(rs.getBoolean("is_disponible"));
-				
+
 			}
-			
-			if(rs!=null){rs.close();}
-			if(stmt!=null){stmt.close();}
+
+			if (rs != null) {
+				rs.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
 			DbConnector.getInstancia().releaseConn();
 
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return m;
 	}
-	public int insertOne(Mascota m ){
-		int id=-1;
+
+	public int insertOne(Mascota m) {
+		int id = -1;
 		try {
-			
+
 			String consulta = "insert into mascota (nombre, tipo_animal,edad,color,is_disponible,imagenes) values (?, ?,?,?,?,?)";
-			PreparedStatement stmt=DbConnector.getInstancia().getConn().prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stmt = DbConnector.getInstancia().getConn().prepareStatement(consulta,
+					Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, m.getNombre());
 			stmt.setString(2, m.getTipo());
 			stmt.setString(3, Integer.toString(m.getEdad()));
@@ -126,94 +140,88 @@ public class DataMascota {
 			stmt.setString(5, Integer.toString((m.getDisponible() ? 1 : 0)));
 			stmt.setString(6, m.getImagenes());
 
-			
 			stmt.executeUpdate();
-	        try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-	            if (generatedKeys.next()) {
-	                id = (int) generatedKeys.getLong(1);
-	            }
-	            else {
-	                throw new SQLException("Creating user failed, no ID obtained.");
-	            }
-	        }
+			try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+				if (generatedKeys.next()) {
+					id = (int) generatedKeys.getLong(1);
+				} else {
+					throw new SQLException("Creating user failed, no ID obtained.");
+				}
+			}
 
-			
-			if(stmt!=null){stmt.close();}
+			if (stmt != null) {
+				stmt.close();
+			}
 			DbConnector.getInstancia().releaseConn();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return id;
 	}
+
 	public String bajaMascota(Mascota m) throws Exception {
 		PreparedStatement stmt = null;
 		ResultSet keyResultSet = null;
 		try {
 			System.out.println("eliminando mascota id: " + m.toString());
-			stmt = DbConnector.getInstancia().getConn().
-					prepareStatement(
-							"delete from transito where id_mascota=? && isnull(id_adoptante)",
-							PreparedStatement.RETURN_GENERATED_KEYS
-							);
-			stmt.setInt(1, m.getId());			
+			stmt = DbConnector.getInstancia().getConn().prepareStatement(
+					"delete from transito where id_mascota=? && isnull(id_adoptante)",
+					PreparedStatement.RETURN_GENERATED_KEYS);
+			stmt.setInt(1, m.getId());
 			stmt.executeUpdate();
-			
+
 			keyResultSet = stmt.getGeneratedKeys();
 			System.out.println("Transitos: " + keyResultSet.toString());
-            if(keyResultSet != null && keyResultSet.next()){
-                m.setId(keyResultSet.getInt(1));
-            }
-            
-            stmt.close();
-            keyResultSet.close();
-            
-            stmt = DbConnector.getInstancia().getConn().
-					prepareStatement(
-							"delete from mascota where id_mascota=?",
-							PreparedStatement.RETURN_GENERATED_KEYS
-							);
-			stmt.setInt(1, m.getId());			
+			if (keyResultSet != null && keyResultSet.next()) {
+				m.setId(keyResultSet.getInt(1));
+			}
+
+			stmt.close();
+			keyResultSet.close();
+
+			stmt = DbConnector.getInstancia().getConn().prepareStatement("delete from mascota where id_mascota=?",
+					PreparedStatement.RETURN_GENERATED_KEYS);
+			stmt.setInt(1, m.getId());
 			stmt.executeUpdate();
-			
+
 			System.out.println("Mascota: " + keyResultSet.toString());
 
 			keyResultSet = stmt.getGeneratedKeys();
-            if(keyResultSet != null && keyResultSet.next()){
-                m.setId(keyResultSet.getInt(1));
-            }
-            
-		}  catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println(e);
-            if(e.getMessage().contains("foreign key constraint fails")) {
-            	throw new Exception("No se pueden eliminar mascotas que ya han sido adoptadas");            	
-            }
-            throw e;
+			if (keyResultSet != null && keyResultSet.next()) {
+				m.setId(keyResultSet.getInt(1));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(e);
+			if (e.getMessage().contains("foreign key constraint fails")) {
+				throw new Exception("No se pueden eliminar mascotas que ya han sido adoptadas");
+			}
+			throw e;
 		} finally {
-            try {
-                if(keyResultSet != null)
-                	keyResultSet.close();
-                if(stmt != null)
-                	stmt.close();
-                DbConnector.getInstancia().releaseConn();
-            } catch (SQLException e) {
-            	e.printStackTrace();            	
-            }
+			try {
+				if (keyResultSet != null)
+					keyResultSet.close();
+				if (stmt != null)
+					stmt.close();
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return ("Mascota Borrada");
-    }
+	}
+
 	public String updateMascota(Mascota nueva, Mascota old) {
-		PreparedStatement stmt= null;
-		ResultSet keyResultSet=null;
+		PreparedStatement stmt = null;
+		ResultSet keyResultSet = null;
 		try {
-			stmt=DbConnector.getInstancia().getConn().
-					prepareStatement(
-							"update mascota set nombre=?, tipo_animal=?, edad=?, color=?, imagenes=? where id_mascota=?",
-							PreparedStatement.RETURN_GENERATED_KEYS
-							);
+			stmt = DbConnector.getInstancia().getConn().prepareStatement(
+					"update mascota set nombre=?, tipo_animal=?, edad=?, color=?, imagenes=? where id_mascota=?",
+					PreparedStatement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, nueva.getNombre());
 			stmt.setString(2, nueva.getTipo());
 			stmt.setInt(3, nueva.getEdad());
@@ -222,25 +230,26 @@ public class DataMascota {
 			stmt.setInt(6, old.getId());
 			System.out.println("seteados" + nueva.toString());
 			stmt.executeUpdate();
-			
-			keyResultSet=stmt.getGeneratedKeys();
-            if(keyResultSet!=null && keyResultSet.next()){
-                nueva.setId(keyResultSet.getInt(1));                
-            }
 
-			
-		}  catch (SQLException e) {
-            e.printStackTrace();
-            return ("Error: "+ e);
+			keyResultSet = stmt.getGeneratedKeys();
+			if (keyResultSet != null && keyResultSet.next()) {
+				nueva.setId(keyResultSet.getInt(1));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return ("Error: " + e);
 		} finally {
-            try {
-                if(keyResultSet!=null)keyResultSet.close();
-                if(stmt!=null)stmt.close();
-                DbConnector.getInstancia().releaseConn();
-            } catch (SQLException e) {
-            	e.printStackTrace();
-            }
+			try {
+				if (keyResultSet != null)
+					keyResultSet.close();
+				if (stmt != null)
+					stmt.close();
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-		return("Mascota " + nueva.getNombre() + " modificada correctamente");
-    }
+		return ("Mascota " + nueva.getNombre() + " modificada correctamente");
+	}
 }
