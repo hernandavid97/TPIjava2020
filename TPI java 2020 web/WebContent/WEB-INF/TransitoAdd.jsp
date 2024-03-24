@@ -2,114 +2,127 @@
 <%@page import="logic.CtrlLoc"%>
 <%@page import="java.util.LinkedList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AdoptAR - Sign Up</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<title>AdoptAR - Sign Up</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"
+	href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<link rel="stylesheet" type="text/css"
+	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<link rel="stylesheet" type="text/css"
+	href="fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<link rel="stylesheet" type="text/css"
+	href="vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css"
+	href="vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-<% CtrlLoc ctrlLoc = new CtrlLoc(); 
-LinkedList<Localidad> localidades= ctrlLoc.getLocalidades();
+<link rel="stylesheet" type="text/css"
+	href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+<%
+CtrlLoc ctrlLoc = new CtrlLoc();
+LinkedList<Localidad> localidades = ctrlLoc.getLocalidades();
 %>
 </head>
 <body>
-	
+
 	<div class="limiter">
-	<a href="index.jsp" class="btn-flotante">↩</a>
-		<div class="container-login100" style="background-image: url('images/cachorros.jpg');">
+		<a href="index.jsp" class="btn-flotante">↩</a>
+		<div class="container-login100"
+			style="background-image: url('images/cachorros.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form" action="transitoadd" method="post">
-					<span class="login100-form-title p-b-10">
-						AdoptAr
-					</span>
-					<span class="login100-form-subtitle p-b-39" >
-						Mascotas felices en hogares felices!
-					</span>
+				<form class="login100-form validate-form" action="transitoadd"
+					method="post">
+					<span class="login100-form-title p-b-10"> AdoptAr </span> <span
+						class="login100-form-subtitle p-b-39"> Mascotas felices en
+						hogares felices! </span>
 
-					<div class="wrap-input100 validate-input m-b-15" data-validate = "Nombre requerido">
-						<span class="label-input100">Nombre</span>
-						<input class="input100" type="text" name="nombre_mascota" placeholder="Ingrese el nombre de la mascota">
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					<div class="wrap-input100 validate-input m-b-15"
+						data-validate="Nombre requerido">
+						<span class="label-input100">Nombre</span> <input class="input100"
+							type="text" name="nombre_mascota"
+							placeholder="Ingrese el nombre de la mascota"> <span
+							class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input m-b-15" data-validate="Especie requerida">
-						<span class="label-input100">Especie</span>
-						<input class="input100" type="text" name="tipo" placeholder="Ingrese la especie">
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					<div class="wrap-input100 validate-input m-b-15"
+						data-validate="Especie requerida">
+						<span class="label-input100">Especie</span> <input
+							class="input100" type="text" name="tipo"
+							placeholder="Ingrese la especie"> <span
+							class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
-					
+
 					<div class="wrap-input100 m-b-15">
-						<span class="label-input100">Edad</span>
-						<input class="input100" type="number" name="edad" placeholder="Ingrese la edad de la mascota">
+						<span class="label-input100">Edad</span> <input class="input100"
+							type="number" name="edad"
+							placeholder="Ingrese la edad de la mascota"> <span
+							class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-15"
+						data-validate="Color requerido">
+						<span class="label-input100">Color</span> <input class="input100"
+							type="text" name="color" placeholder="Ingrese el color">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
-					
-					<div class="wrap-input100 validate-input m-b-15" data-validate = "Color requerido">
-						<span class="label-input100">Color</span>
-						<input class="input100" type="text" name="color" placeholder="Ingrese el color">
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
+
+					<div class="wrap-input100 validate-input m-b-15"
+						data-validate="Cargue por lo menos una imagen">
+						<span class="label-input100">Links de Imagenes (separados
+							por coma)</span> <input class="input100" type="text" name="imagenes"
+							placeholder="Ingrese el link de la imagen"> <span
+							class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
-					
-					<div class="wrap-input100 validate-input m-b-15" data-validate = "Cargue por lo menos una imagen">
-						<span class="label-input100">Links de Imagenes (separados por coma)</span>
-						<input class="input100" type="text" name="imagenes" placeholder="Ingrese el link de la imagen">
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
-						
+
 					<div class="container-login100-form-btn m-t-25">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
-								Dar en adopción
-							</button>
+							<button class="login100-form-btn">Dar en adopción</button>
 						</div>
-					</div>	
+					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-	
+
 
 	<div id="dropDownSelect1"></div>
-	
-<!--===============================================================================================-->
+
+	<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/bootstrap/js/popper.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/daterangepicker/moment.min.js"></script>
 	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
 </body>

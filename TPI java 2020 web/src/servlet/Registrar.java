@@ -17,27 +17,31 @@ import logic.Login;
 @WebServlet({ "/Registrar", "/registrar" })
 public class Registrar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Registrar() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public Registrar() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Usuario u = new Usuario();
 		u.setUsuario(request.getParameter("username"));
@@ -55,7 +59,7 @@ public class Registrar extends HttpServlet {
 		Login ctrl = new Login();
 		ctrl.validaRegistro(u);
 		u = ctrl.validate(u);
-		request.getSession().setAttribute("usuario", u);	
+		request.getSession().setAttribute("usuario", u);
 		request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 	}
 

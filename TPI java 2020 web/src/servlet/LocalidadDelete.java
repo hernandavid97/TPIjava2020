@@ -14,34 +14,38 @@ import logic.CtrlLoc;
 /**
  * Servlet implementation class LocalidadDelete
  */
-@WebServlet({"/LocalidadDelete", "/localidaddelete"})
+@WebServlet({ "/LocalidadDelete", "/localidaddelete" })
 public class LocalidadDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LocalidadDelete() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public LocalidadDelete() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/LocalidadBaja.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		CtrlLoc ctrl = new CtrlLoc();
 		Localidad l = new Localidad();
-		l.setId(Integer.parseInt(request.getParameter("localidad")));	
+		l.setId(Integer.parseInt(request.getParameter("localidad")));
 		String respString;
 		try {
 			respString = ctrl.validaBaja(l);
@@ -53,7 +57,7 @@ public class LocalidadDelete extends HttpServlet {
 			request.setAttribute("errorMessage", er.getMessage());
 			request.getRequestDispatcher("/WEB-INF/LocalidadBaja.jsp").forward(request, response);
 		}
-		
+
 	}
 
 }

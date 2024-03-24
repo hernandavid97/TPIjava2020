@@ -27,7 +27,7 @@ public class DataVacunacion {
 				Vacuna vs = new Vacuna();
 				vs.setId(rs.getInt("v.id_vacuna"));
 				vs.setTitulo(rs.getString("vs.titulo"));
-				
+
 				v.setVacuna(vs);
 				vacunaciones.add(v);
 			}
