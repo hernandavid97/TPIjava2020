@@ -87,7 +87,9 @@ Usuario u = (Usuario) session.getAttribute("usuario");
 					href="localidadlist">Listado de localidades</a><br> <br>
 				<a href="localidadadd">Alta Localidad</a><br> <br> <a
 					href="localidadmod">Modificar Localidad</a><br> <br> <a
-					href="localidaddelete">Baja Localidad</a> <br> <br>
+					href="localidaddelete">Baja Localidad</a> <br>
+				<br> <a href="vacunaadd">Alta Vacuna</a><br> <br>
+
 				<div
 					style="border: 1px solid white; width: 100%; height: 0px; margin-bottom: 20px;"></div>
 				<a href="transitolist">Listado de Transitos</a><br> <br> <a
