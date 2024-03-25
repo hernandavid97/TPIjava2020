@@ -1,4 +1,11 @@
 <%@page import="entities.Localidad"%>
+<%@page import="entities.Usuario"%>
+
+<%
+Usuario u = (Usuario) session.getAttribute("usuario");
+u.getTipo()
+;
+%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -41,7 +48,7 @@
 <body>
 
 	<div class="limiter">
-		<a href="index.jsp" class="btn-flotante">↩</a>
+				<a href="Signin" class="btn-flotante">↩</a>
 		<%if (l != null) { %>
 		<div>
 			<h2 class="text-center snack">

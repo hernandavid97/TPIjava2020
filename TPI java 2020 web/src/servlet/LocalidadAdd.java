@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Localidad;
+import entities.Usuario;
 import logic.CtrlLoc;
 
 /**
@@ -32,7 +33,14 @@ public class LocalidadAdd extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/LocalidadAdd.jsp").forward(request, response);
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != 0) {
+			request.getSession().setAttribute("permisos", "No tiene permisos");
+			response.sendRedirect("Signin");
+			return;
+		}
+		request.getRequestDispatcher("/WEB-INF/LocalidadAdd.jsp").forward(request, response);			
+		
 	}
 
 	/**

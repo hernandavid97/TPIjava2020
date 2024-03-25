@@ -100,7 +100,7 @@ if (u != null) {
 
 					<div class="flex-col-c p-t-50">
 						<span class="txt1 p-b-17"> No esta registrado? </span> <a
-							href="registro.jsp" class="txt2"> Registrarse </a>
+							href="registrar" class="txt2"> Registrarse </a>
 					</div>
 				</form>
 			</div>
