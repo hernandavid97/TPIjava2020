@@ -67,10 +67,22 @@
 <%
 Usuario u = (Usuario) session.getAttribute("usuario");
 %>
+<%
+String p = (String) request.getAttribute("permisos");
+%>
 </head>
 
 <body>
 	<div class="limiter">
+		<%
+			if (p != null) {
+		%>
+			<div>
+				<h2 class="text-center snack" style="background: red;"><%=p%></h2>
+			</div>
+		<%
+			}
+		%>
 		<div class="container-login100"
 			style="background-image: url('images/cachorros.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-40 p-b-54">
@@ -83,7 +95,7 @@ Usuario u = (Usuario) session.getAttribute("usuario");
 				if (u.getTipo() == 0) {
 				%>
 				<a href="usuariolist">Listado de Usuarios</a><br> <br> <a
-					href="registro">Alta Usuario</a><br> <br> <a
+					href="registrar">Alta Usuario</a><br> <br> <a
 					href="localidadlist">Listado de localidades</a><br> <br>
 				<a href="localidadadd">Alta Localidad</a><br> <br> <a
 					href="localidadmod">Modificar Localidad</a><br> <br> <a

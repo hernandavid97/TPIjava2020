@@ -51,7 +51,7 @@ LinkedList<Mascota> mascotas = ctrlMas.getMascotasByUser(u.getId());
 <body>
 
 	<div class="limiter">
-		<a href="index.jsp" class="btn-flotante">↩</a>
+				<a href="Signin" class="btn-flotante">↩</a>
 		<%
 		if (e != null) {
 		%>

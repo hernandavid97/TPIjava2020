@@ -52,7 +52,7 @@ LinkedList<Mascota> lm = (LinkedList<Mascota>) request.getAttribute("listaMascot
 			style="background-image: url('images/cachorros.jpg');">
 			<div
 				class="max-w-wrapper wrap-login100 login100-form p-l-55 p-r-55 p-t-54 p-b-54">
-				<a href="index.jsp" class="btn-flotante">↩</a>
+						<a href="Signin" class="btn-flotante">↩</a>
 				<table class="table" width="70%" cellspacing="0">
 					<thead>
 						<tr>
