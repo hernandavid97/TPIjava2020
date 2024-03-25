@@ -3,11 +3,14 @@ package logic;
 import entities.*;
 
 import java.util.ArrayList;
-
-import data.DataMascota;
 import data.DataVacuna;
 
 public class VacunaLogic {
+	private DataVacuna dv;
+
+	public VacunaLogic() {
+		dv = new DataVacuna();
+	}
 
 	public static ArrayList<Vacuna> getAll() {
 		return new DataVacuna().getAll();
@@ -17,13 +20,28 @@ public class VacunaLogic {
 		return new DataVacuna().altaVacuna(v);
 	}
 
-	public boolean validaVacuna(int id_vacuna ) {
+	public boolean validaVacuna(int id_vacuna) {
 		Vacuna vac = new DataVacuna().getById(id_vacuna);
-		System.out.print(vac);
 		if (vac == null) {
 			return false;
 		}
 		return true;
+	}
+
+	public String validaBaja(Vacuna v) throws Exception {
+		int id = v.getId();
+		if (dv.getById(id) != null) {
+			String b = "";
+			try {
+				b = dv.bajaVacuna(v);
+			} catch (Exception e) {
+				System.out.println(e);
+				throw e;
+				// TODO: handle exception
+			}
+			return (b);
+		} else
+			return ("Vacuna no existe");
 	}
 
 }

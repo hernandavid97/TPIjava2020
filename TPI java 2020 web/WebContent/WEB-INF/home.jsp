@@ -83,12 +83,13 @@ Usuario u = (Usuario) session.getAttribute("usuario");
 				if (u.getTipo() == 0) {
 				%>
 				<a href="usuariolist">Listado de Usuarios</a><br> <br> <a
-					href="registro">Alta Usuario</a><br> <br> <a
+					href="registro">Crear Usuario</a><br> <br> <a
 					href="localidadlist">Listado de localidades</a><br> <br>
-				<a href="localidadadd">Alta Localidad</a><br> <br> <a
+				<a href="localidadadd">Crear Localidad</a><br> <br> <a
 					href="localidadmod">Modificar Localidad</a><br> <br> <a
-					href="localidaddelete">Baja Localidad</a> <br>
-				<br> <a href="vacunaadd">Alta Vacuna</a><br> <br>
+					href="localidaddelete">Eliminar Localidad</a> <br> <br> <a
+					href="vacunaadd">Crear Vacuna</a><br> <br>
+				<a href="vacunabaja">Eliminar Vacuna</a><br> <br>
 
 				<div
 					style="border: 1px solid white; width: 100%; height: 0px; margin-bottom: 20px;"></div>
@@ -96,12 +97,12 @@ Usuario u = (Usuario) session.getAttribute("usuario");
 					href="mascotalist">Listado de Mascotas</a><br> <br> <a
 					href="transitoadd">Publicar mascota en adopcion</a><br> <br>
 				<a href="mascotamod">Modificar Mascotas</a> <br> <br> <a
-					href="mascotadelete">Baja Mascota</a> <br> <br> <a
+					href="mascotadelete">Eliminar Mascota</a> <br> <br> <a
 					href="vacunalist">Listado de Vacunas</a><br> <br>
 				<div
 					style="border: 1px solid white; width: 100%; height: 0px; margin-bottom: 20px;"></div>
 				<a href="usuariomod">Modificar datos de Usuario</a><br> <br>
-				<a href="usuariobaj">Borrar Cuenta</a><br> <br> <a
+				<a href="usuariobaj">Eliminar Cuenta</a><br> <br> <a
 					href="logout">Cerrar Sesion</a><br> <br>
 				<%
 				} else {

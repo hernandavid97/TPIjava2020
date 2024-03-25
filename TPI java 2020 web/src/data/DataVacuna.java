@@ -113,4 +113,36 @@ public class DataVacuna {
 
 		return v;
 	}
+	public String bajaVacuna(Vacuna v) throws Exception {
+		PreparedStatement stmt = null;
+		ResultSet keyResultSet = null;
+		try {
+			stmt = DbConnector.getInstancia().getConn().prepareStatement("delete from vacuna where id_vacuna=?",
+					PreparedStatement.RETURN_GENERATED_KEYS);
+			stmt.setInt(1, v.getId());
+			stmt.executeUpdate();
+
+			keyResultSet = stmt.getGeneratedKeys();
+			if (keyResultSet != null && keyResultSet.next()) {
+				v.setId(keyResultSet.getInt(1));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new Exception(
+					"Ha ocurrido un error al dar de baja la vacuna, no se puede eliminar vacunas activas");
+		} finally {
+			try {
+				if (keyResultSet != null)
+					keyResultSet.close();
+				if (stmt != null)
+					stmt.close();
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ("Vacuna Borrada");
+	}
+
 }
