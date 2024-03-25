@@ -99,7 +99,9 @@ String p = (String) request.getAttribute("permisos");
 				<a href="localidadadd">Crear Localidad</a><br> <br> <a
 					href="localidadmod">Modificar Localidad</a><br> <br> <a
 					href="localidaddelete">Eliminar Localidad</a> <br> <br> <a
-					href="vacunaadd">Crear Vacuna</a><br> <br> <a
+					href="vacunaadd">Crear Vacuna</a><br> <br> 
+					<a
+					href="vacunamod">Modificar Vacuna</a><br> <br><a
 					href="vacunabaja">Eliminar Vacuna</a><br> <br> <a
 					href="mascotadelete">Eliminar Mascota</a> <br> <br>
 
