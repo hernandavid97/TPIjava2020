@@ -52,7 +52,7 @@ LinkedList<Localidad> localidades = ctrlLoc.getLocalidades();
 <body>
 
 	<div class="limiter">
-		<a href="index.jsp" class="btn-flotante">↩</a>
+				<a href="Signin" class="btn-flotante">↩</a>
 		<%
 		if ((e != null) && (e.equals("Error"))) {
 		%>

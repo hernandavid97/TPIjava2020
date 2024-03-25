@@ -53,6 +53,8 @@ public class Signin extends HttpServlet {
 		user.setUsuario(usuario);
 		user.setPassword(pass);
 		user = ctrl.validate(user);
+		request.setAttribute("permisos", request.getSession().getAttribute("permisos"));
+		request.getSession().setAttribute("permisos", null);
 		if (user != null && user.getFechaBaja() == null) {
 			request.getSession().setAttribute("usuario", user);
 			request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
