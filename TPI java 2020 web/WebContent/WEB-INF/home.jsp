@@ -75,13 +75,13 @@ String p = (String) request.getAttribute("permisos");
 <body>
 	<div class="limiter">
 		<%
-			if (p != null) {
+		if (p != null) {
 		%>
-			<div>
-				<h2 class="text-center snack" style="background: red;"><%=p%></h2>
-			</div>
+		<div>
+			<h2 class="text-center snack" style="background: red;"><%=p%></h2>
+		</div>
 		<%
-			}
+		}
 		%>
 		<div class="container-login100"
 			style="background-image: url('images/cachorros.jpg');">
@@ -95,13 +95,15 @@ String p = (String) request.getAttribute("permisos");
 				if (u.getTipo() == 0) {
 				%>
 				<a href="usuariolist">Listado de Usuarios</a><br> <br> <a
-					href="registrar">Alta Usuario</a><br> <br> <a
 					href="localidadlist">Listado de localidades</a><br> <br>
 				<a href="localidadadd">Crear Localidad</a><br> <br> <a
 					href="localidadmod">Modificar Localidad</a><br> <br> <a
 					href="localidaddelete">Eliminar Localidad</a> <br> <br> <a
-					href="vacunaadd">Crear Vacuna</a><br> <br>
-				<a href="vacunabaja">Eliminar Vacuna</a><br> <br>
+					href="vacunaadd">Crear Vacuna</a><br> <br> 
+					<a
+					href="vacunamod">Modificar Vacuna</a><br> <br><a
+					href="vacunabaja">Eliminar Vacuna</a><br> <br> <a
+					href="mascotadelete">Eliminar Mascota</a> <br> <br>
 
 				<div
 					style="border: 1px solid white; width: 100%; height: 0px; margin-bottom: 20px;"></div>
@@ -109,7 +111,6 @@ String p = (String) request.getAttribute("permisos");
 					href="mascotalist">Listado de Mascotas</a><br> <br> <a
 					href="transitoadd">Publicar mascota en adopcion</a><br> <br>
 				<a href="mascotamod">Modificar Mascotas</a> <br> <br> <a
-					href="mascotadelete">Eliminar Mascota</a> <br> <br> <a
 					href="vacunalist">Listado de Vacunas</a><br> <br>
 				<div
 					style="border: 1px solid white; width: 100%; height: 0px; margin-bottom: 20px;"></div>

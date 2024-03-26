@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import entities.Vacuna;
 import logic.VacunaLogic;
 
 /**
- * Servlet implementation class VacunaDelete
+ * Servlet implementation class VacunaModif
  */
-@WebServlet({ "/VacunaBaja", "/vacunabaja" })
-public class VacunaBaja extends HttpServlet {
+@WebServlet({ "/vacunamod", "/VacunaMod" })
+public class VacunaModif extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public VacunaBaja() {
+	public VacunaModif() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -34,10 +33,9 @@ public class VacunaBaja extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		ArrayList<Vacuna> vacunas = VacunaLogic.getAll();
 		request.setAttribute("vacunas", vacunas);
-		request.getRequestDispatcher("/WEB-INF/VacunaBaja.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/VacunaModif.jsp").forward(request, response);
 	}
 
 	/**
@@ -46,24 +44,17 @@ public class VacunaBaja extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		ArrayList<Vacuna> vacunas = VacunaLogic.getAll();
 		request.setAttribute("vacunas", vacunas);
+		Vacuna nueva = new Vacuna();
+		Vacuna old = new Vacuna();
+		nueva.setTitulo(request.getParameter("titulo"));
+		nueva.setEspecie(request.getParameter("especie"));
+		nueva.setDescripcion(request.getParameter("descripcion"));
+		old.setId(Integer.parseInt(request.getParameter("id")));
 		VacunaLogic vlogic = new VacunaLogic();
-		Vacuna v = new Vacuna();
-		v.setId(Integer.parseInt(request.getParameter("vacuna")));
-		String respString;
-		try {
-			respString = vlogic.validaBaja(v);
-			request.setAttribute("estado", respString);
-			request.getRequestDispatcher("/WEB-INF/VacunaBaja.jsp").forward(request, response);
-		} catch (Exception er) {
-			System.out.println(er.getMessage());
-			request.setAttribute("estado", "Error");
-			request.setAttribute("errorMessage", er.getMessage());
-			request.getRequestDispatcher("/WEB-INF/VacunaBaja.jsp").forward(request, response);
-		}
-
+		request.setAttribute("estado", vlogic.validaModif(nueva, old));
+		request.getRequestDispatcher("/WEB-INF/VacunaModif.jsp").forward(request, response);
 	}
 
 }

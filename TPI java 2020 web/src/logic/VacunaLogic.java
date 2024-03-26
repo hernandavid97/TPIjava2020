@@ -44,4 +44,10 @@ public class VacunaLogic {
 			return ("Vacuna no existe");
 	}
 
+	public String validaModif(Vacuna nueva, Vacuna old) {
+		if (dv.getById(old.getId()) != null) {
+			return (dv.updateVacuna(nueva, old));
+		} else
+			return ("Vacuna no existe");
+	}
 }
