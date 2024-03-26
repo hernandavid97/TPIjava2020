@@ -150,7 +150,7 @@ public class DataVacuna {
 		ResultSet keyResultSet = null;
 		try {
 			stmt = DbConnector.getInstancia().getConn().prepareStatement(
-					"update vacuna set titulo=?, especie=?, descripcion=? where id_mascota=?",
+					"update vacuna set titulo=?, especie=?, descripcion=? where id_vacuna=?",
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, nueva.getTitulo());
 			stmt.setString(2, nueva.getEspecie());

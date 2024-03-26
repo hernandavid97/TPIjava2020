@@ -60,7 +60,7 @@ ArrayList<Vacuna> vacunas = (ArrayList<Vacuna>) request.getAttribute("vacunas");
 		<div class="container-login100"
 			style="background-image: url('images/cachorros.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form" action="mascotamod"
+				<form class="login100-form validate-form" action="vacunamod"
 					method="post">
 					<span class="login100-form-title p-b-10"> AdoptAr </span> <span
 						class="login100-form-subtitle p-b-20"> Mascotas felices en
