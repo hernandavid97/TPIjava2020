@@ -15,6 +15,10 @@ public class VacunaLogic {
 	public static ArrayList<Vacuna> getAll() {
 		return new DataVacuna().getAll();
 	}
+	
+	public static ArrayList<Vacuna> getByEspecie(String especie) {
+		return new DataVacuna().getByEspecie(especie);
+	}
 
 	public static int altaVacuna(Vacuna v) {
 		return new DataVacuna().altaVacuna(v);

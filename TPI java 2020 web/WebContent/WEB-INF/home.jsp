@@ -70,6 +70,9 @@ Usuario u = (Usuario) session.getAttribute("usuario");
 <%
 String p = (String) request.getAttribute("permisos");
 %>
+<%
+String m = (String) request.getAttribute("message");
+%>
 </head>
 
 <body>
@@ -79,6 +82,15 @@ String p = (String) request.getAttribute("permisos");
 		%>
 		<div>
 			<h2 class="text-center snack" style="background: red;"><%=p%></h2>
+		</div>
+		<%
+		}
+		%>
+		<%
+		if (m != null) {
+		%>
+		<div>
+			<h2 class="text-center snack" style="background: green;"><%=m%></h2>
 		</div>
 		<%
 		}
@@ -106,24 +118,29 @@ String p = (String) request.getAttribute("permisos");
 					href="mascotadelete">Eliminar Mascota</a> <br> <br>
 
 				<div
-					style="border: 1px solid white; width: 100%; height: 0px; margin-bottom: 20px;"></div>
-				<a href="transitolist">Listado de Transitos</a><br> <br> <a
-					href="mascotalist">Listado de Mascotas</a><br> <br> <a
-					href="transitoadd">Publicar mascota en adopcion</a><br> <br>
-				<a href="mascotamod">Modificar Mascotas</a> <br> <br> <a
-					href="vacunalist">Listado de Vacunas</a><br> <br>
+					style="border: 1px solid white; width: 100%; height: 0px; margin-bottom: 20px;">
+				</div>
+					<a href="transitolist">Listado de Transitos</a><br> <br> <a
+						href="mascotalist">Listado de Mascotas</a><br> <br> <a
+						href="transitoadd">Publicar mascota en adopcion</a><br> <br>
+					<a href="mascotamod">Modificar Mascotas</a> <br> <br> <a
+						href="vacunalist">Listado de Vacunas</a><br> <br>
+											<a href="vacunacionadd">Cargar vacunación</a><br> <br>
+						
 				<div
-					style="border: 1px solid white; width: 100%; height: 0px; margin-bottom: 20px;"></div>
+					style="border: 1px solid white; width: 100%; height: 0px; margin-bottom: 20px;">
+				</div>
 				<a href="usuariomod">Modificar datos de Usuario</a><br> <br>
 				<a href="usuariobaj">Eliminar Cuenta</a><br> <br> <a
 					href="logout">Cerrar Sesion</a><br> <br>
 				<%
 				} else {
 				%>
-				<a href="transitolist">Listado de Transitos</a><br> <br> <a
-					href="mascotalist">Listado de Mascotas</a><br> <br> <a
-					href="mascotamod">Modificar Mascotas</a> <br> <br> <a
-					href="transitoadd">Publicar mascota en adopcion</a><br> <br>
+					<a href="transitolist">Listado de Transitos</a><br> <br>
+					<a href="mascotalist">Listado de Mascotas</a><br> <br> 
+					<a href="mascotamod">Modificar Mascotas</a> <br> <br> 
+					<a href="transitoadd">Publicar mascota en adopcion</a><br> <br>
+					<a href="vacunacionadd">Cargar vacunación</a><br> <br>
 				<div
 					style="border: 1px solid white; width: 100%; height: 0px; margin-bottom: 20px;"></div>
 				<a href="usuariomod">Modificar datos de Usuario</a><br> <br>
