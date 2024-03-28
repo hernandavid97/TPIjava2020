@@ -1,10 +1,18 @@
+<%@page import="entities.Vacunacion"%>
+<%@page import="logic.VacunacionLogic"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="entities.Vacuna"%>
+<%@page import="logic.VacunaLogic"%>
 <%@page import="entities.Usuario"%>
+<%@page import="entities.Mascota"%>
+<%@page import="logic.CtrlMas"%>
+<%@page import="java.util.LinkedList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>AdoptAR - Login</title>
+<title>Cargar vacunación</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -37,20 +45,20 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 <%
-Usuario u = (Usuario) session.getAttribute("usuario");
-%>
-<%
 String e = (String) request.getAttribute("estado");
 %>
 <%
-if (u != null) {
-	request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-}
+CtrlMas ctrlMas = new CtrlMas();
+Usuario u = (Usuario) session.getAttribute("usuario");
+LinkedList<Mascota> mascotas = ctrlMas.getMascotasByUser(u.getId());
+VacunacionLogic vacunacionLogic = new VacunacionLogic();
+LinkedList<Vacunacion> vacunaciones = vacunacionLogic.getAll();
 %>
 </head>
 <body>
 
 	<div class="limiter">
+				<a href="Signin" class="btn-flotante">↩</a>
 		<%
 		if (e != null) {
 		%>
@@ -63,43 +71,43 @@ if (u != null) {
 		<div class="container-login100"
 			style="background-image: url('images/cachorros.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form" action="Signin"
-					method="post">
+				<form class="login100-form validate-form" action="vacunacionbaja"
+					method="post" id="formbajaVac">
 					<span class="login100-form-title p-b-10"> AdoptAr </span> <span
-						class="login100-form-subtitle p-b-39"> Mascotas felices en
+						class="login100-form-subtitle p-b-20"> Mascotas felices en
 						hogares felices! </span>
 
-					<div class="wrap-input100 validate-input m-b-23"
-						data-validate="Usuario requerido">
-						<span class="label-input100">Usuario</span> <input
-							class="input100" type="text" name="username"
-							placeholder="Ingrese su usuario"> <span
-							class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
+					<p class="text-center txt2 m-b-15">Borrar vacunación</p>
 
-					<div class="wrap-input100 validate-input"
-						data-validate="Contraseña Requerida">
-						<span class="label-input100">Contraseña</span> <input
-							class="input100" type="password" name="pass"
-							placeholder="Ingrese su contraseña"> <span
-							class="focus-input100" data-symbol="&#xf190;"></span>
+				<div class="wrap-input100 validate-input m-b-15"
+						data-validate="Mascota requerida">
+						<span class="label-input100">Mascota</span> <select
+							class="input100" required id="selectMascota" name="selectMascota">
+							<option value="">Elija mascota actual</option>
+							<%
+							for (Mascota mas : mascotas) {
+							%>
+							<option value="<%=mas.getId()%>"><%=mas.getNombre()%></option>
+							<%
+							}
+							%>
+						</select> <span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
+					
+					
+				<div class="wrap-input100 validate-input m-b-15"
+						data-validate="Vacuna requerida">
+						<span class="label-input100">Vacuna</span> <select
+							class="input100" required id="selectVacuna" name="selectVacuna">
+							<option value="">Elija vacuna</option>							
+						</select> <span class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>		
 
-					<div class="text-right p-t-8 p-b-31">
-					</div>
-
-					<div class="container-login100-form-btn">
+					<div class="container-login100-form-btn m-t-25">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">Login</button>
+							<button class="login100-form-btn">Aceptar</button>
 						</div>
-					</div>
-
-
-
-					<div class="flex-col-c p-t-50">
-						<span class="txt1 p-b-17"> No esta registrado? </span> <a
-							href="registrar" class="txt2"> Registrarse </a>
 					</div>
 				</form>
 			</div>
@@ -108,6 +116,50 @@ if (u != null) {
 
 
 	<div id="dropDownSelect1"></div>
+
+
+	<script>
+	    document.getElementById('selectMascota').addEventListener('change', function() {
+	        var selectedMascotaId = this.value;
+	        var selectVacuna = document.getElementById('selectVacuna');
+	        selectVacuna.innerHTML = ''; // Limpiar las opciones anteriores
+	        
+	        var especie
+	
+	        // Iterar sobre las vacunas y agregar las que correspondan a la mascota seleccionada
+	        <% for (Mascota mas : mascotas) { %>
+		        if ('<%= mas.getId() %>' === selectedMascotaId) {
+	                mascota = '<%= mas.getId() %>';	                
+	            }
+	        <% } %>
+            var empty = document.createElement('option');
+            empty.value = '';
+            empty.text = 'Elija vacuna'
+	        selectVacuna.appendChild(empty);
+            let cant = 0
+	        <% for (Vacunacion vac : vacunaciones) { %>
+	                if ('<%= vac.getId_mascota() %>' ===  mascota) {
+	                	cant++
+	                    var option = document.createElement('option');
+	                    option.value = '<%= vac.getId_vacunacion() %>';
+	                    option.text = '<%= vac.getVacuna().getTitulo() %>- Aplicada en ' + new Date('<%= vac.getFecha_vacunacion() %>').toLocaleDateString() ;
+	                    selectVacuna.appendChild(option);
+	                }	           
+	        <% } %>
+	        if (cant == 0){
+	        	if(document.getElementById('vacio'))
+		        	document.getElementById('formbajaVac').removeChild(document.getElementById('vacio'))
+	        	let errorEl = document.createElement('span')
+	        	errorEl.innerHTML = 'La mascota no tiene vacunas'
+	        	errorEl.id = 'vacio'
+	        	document.getElementById('formbajaVac').appendChild(errorEl)
+	        } else {
+	        	if(document.getElementById('vacio'))
+		        	document.getElementById('formbajaVac').removeChild(document.getElementById('vacio'))
+	        }
+	        	
+	    });
+	</script>
 
 	<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>

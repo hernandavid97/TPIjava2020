@@ -33,6 +33,12 @@ public class Adopcion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+		if(usuario == null ) {
+			request.getSession().setAttribute("permisos", "Usuario inválido, inicie sesión");
+			response.sendRedirect("Signin");
+			return;
+		}
 		Usuario u = (Usuario) request.getSession().getAttribute("usuario");
 		String adopcion = request.getParameter("seleccionada");
 		if (adopcion != null) {

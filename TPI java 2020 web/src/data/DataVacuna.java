@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import entities.Localidad;
-import entities.Mascota;
 import entities.Vacuna;
 
 public class DataVacuna {

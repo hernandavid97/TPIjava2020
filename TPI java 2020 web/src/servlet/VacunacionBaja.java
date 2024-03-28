@@ -1,27 +1,35 @@
 package servlet;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import data.DataVacunacion;
 import entities.Mascota;
+import entities.Transito;
 import entities.Usuario;
-import logic.CtrlMas;
+import entities.Vacunacion;
+import logic.TransitoLogic;
+import logic.VacunacionLogic;
 
 /**
- * Servlet implementation class LocalidadModif
+ * Servlet implementation class TransitoAdd
  */
-@WebServlet({ "/mascotamod", "/MascotaMod" })
-public class MascotaModif extends HttpServlet {
+@WebServlet({ "/vacunacionbaja", "/VacunacionBaja" })
+public class VacunacionBaja extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public MascotaModif() {
+	public VacunacionBaja() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -39,7 +47,7 @@ public class MascotaModif extends HttpServlet {
 			response.sendRedirect("Signin");
 			return;
 		}
-		request.getRequestDispatcher("/WEB-INF/MascotaModif.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/VacunacionBaja.jsp").forward(request, response);
 	}
 
 	/**
@@ -49,18 +57,22 @@ public class MascotaModif extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Mascota nueva = new Mascota();
-		Mascota old = new Mascota();
-		nueva.setNombre(request.getParameter("nombre_mascota"));
-		nueva.setColor(request.getParameter("color"));
-		nueva.setTipo(request.getParameter("tipo"));
-		nueva.setEdad(Integer.parseInt(request.getParameter("edad")));
-		nueva.setImagenes(request.getParameter("imagenes"));
-		System.out.println(nueva.getNombre());
-		old.setId(Integer.parseInt(request.getParameter("id")));
-		CtrlMas ctrlmas = new CtrlMas();
-		request.setAttribute("estado", ctrlmas.validaModif(nueva, old));
-		request.getRequestDispatcher("/WEB-INF/MascotaModif.jsp").forward(request, response);
-	}
+		
+  
+        try {
+			Vacunacion v = new Vacunacion();
+			v.setId_vacunacion(Integer.parseInt(request.getParameter("selectVacuna")));
+			System.out.println(v.getId_vacuna());
+			VacunacionLogic ctrlVac = new VacunacionLogic();
+			String res = ctrlVac.validaBaja(v);
+			System.out.println(res);
+			request.setAttribute("message", res);
+			request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("estado", "Ha ocurrido un error" );
+			request.getRequestDispatcher("/WEB-INF/VacunacionAdd.jsp").forward(request, response);
+		}
 
+	}
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Mascota;
+import entities.Usuario;
 import logic.MascotaLogic;
 
 /**
@@ -34,6 +35,12 @@ public class MascotaList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+		if(usuario == null ) {
+			request.getSession().setAttribute("permisos", "Usuario inválido, inicie sesión");
+			response.sendRedirect("Signin");
+			return;
+		}
 		LinkedList<Mascota> mascotas = MascotaLogic.getAll();
 		request.setAttribute("listaMascotas", mascotas);
 		request.getRequestDispatcher("/WEB-INF/MascotaList.jsp").forward(request, response);

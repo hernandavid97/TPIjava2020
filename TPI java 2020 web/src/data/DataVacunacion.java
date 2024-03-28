@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 
+import entities.Localidad;
 import entities.Mascota;
 import entities.Vacuna;
 import entities.Vacunacion;
@@ -20,6 +21,44 @@ public class DataVacunacion {
 					+ "INNER JOIN vacuna vs on v.id_vacuna = vs.id_vacuna" + " where v.id_mascota = ?";
 			PreparedStatement stmt = DbConnector.getInstancia().getConn().prepareStatement(consulta);
 			stmt.setInt(1, id_mascota);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				Vacunacion v = new Vacunacion();
+				v.setId_vacunacion(rs.getInt("id_vacunacion"));
+				v.setId_mascota(rs.getInt("id_mascota"));
+				v.setId_vacuna(rs.getInt("id_vacuna"));
+				v.setFecha_vacunacion(rs.getDate("fecha_vacunacion"));
+				Vacuna vs = new Vacuna();
+				vs.setId(rs.getInt("v.id_vacuna"));
+				vs.setTitulo(rs.getString("vs.titulo"));
+
+				v.setVacuna(vs);
+				vacunaciones.add(v);
+			}
+
+			if (rs != null) {
+				rs.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+			DbConnector.getInstancia().releaseConn();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return vacunaciones;
+	}
+	
+	public LinkedList<Vacunacion> getAll() {
+		LinkedList<Vacunacion> vacunaciones = new LinkedList<Vacunacion>();
+		try {
+			String consulta = "SELECT v.id_vacunacion,v.id_mascota,v.id_vacuna,fecha_vacunacion,vs.titulo "
+					+ "FROM vacunacion v " + "INNER JOIN mascota m on v.id_mascota = m.id_mascota "
+					+ "INNER JOIN vacuna vs on v.id_vacuna = vs.id_vacuna" ;
+			PreparedStatement stmt = DbConnector.getInstancia().getConn().prepareStatement(consulta);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				Vacunacion v = new Vacunacion();
@@ -159,36 +198,37 @@ public class DataVacunacion {
 	
 	public Vacunacion getOne(int id_vacunacion) {
 		Vacunacion v = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		try {
-
-			String consulta = "select * from vacunacion where id_vacunacion = ? ";
-			PreparedStatement stmt = DbConnector.getInstancia().getConn().prepareStatement(consulta);
-			stmt.setString(1, Integer.toString(id_vacunacion));
-			ResultSet rs = stmt.executeQuery();
-
-			while (rs.next()) {
+			stmt = DbConnector.getInstancia().getConn().prepareStatement(
+					"select * from vacunacion where id_vacunacion=?");
+			stmt.setInt(1, id_vacunacion);
+			rs = stmt.executeQuery();
+			if (rs != null && rs.next()) {
 				v = new Vacunacion();
 				v.setId_vacunacion(rs.getInt("id_mascota"));
 				v.setId_vacuna(rs.getInt("id_vacuna"));
 				v.setFecha_vacunacion(rs.getDate("fecha_vacunación"));	
-
 			}
-
-			if (rs != null) {
-				rs.close();
-			}
-			if (stmt != null) {
-				stmt.close();
-			}
-			DbConnector.getInstancia().releaseConn();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return v;
-	}
+	}	
+
 
 }

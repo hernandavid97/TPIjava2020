@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entities.Usuario;
 import entities.Vacuna;
 import logic.VacunaLogic;
 
@@ -33,6 +34,12 @@ public class VacunaModif extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != 0) {
+			request.getSession().setAttribute("permisos", "No tiene permisos");
+			response.sendRedirect("Signin");
+			return;
+		}
 		ArrayList<Vacuna> vacunas = VacunaLogic.getAll();
 		request.setAttribute("vacunas", vacunas);
 		request.getRequestDispatcher("/WEB-INF/VacunaModif.jsp").forward(request, response);

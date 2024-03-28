@@ -33,6 +33,12 @@ public class usuarioModif extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+		if(usuario == null ) {
+			request.getSession().setAttribute("permisos", "Usuario inválido, inicie sesión");
+			response.sendRedirect("Signin");
+			return;
+		}
 		request.getRequestDispatcher("/WEB-INF/UsuarioModif.jsp").forward(request, response);
 	}
 

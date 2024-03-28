@@ -31,7 +31,6 @@ public class VacunacionAdd extends HttpServlet {
 	 */
 	public VacunacionAdd() {
 		super();
-		DataVacunacion dv = new DataVacunacion();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -42,6 +41,12 @@ public class VacunacionAdd extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+		if(usuario == null ) {
+			request.getSession().setAttribute("permisos", "Usuario inválido, inicie sesión");
+			response.sendRedirect("Signin");
+			return;
+		}
 		request.getRequestDispatcher("WEB-INF/VacunacionAdd.jsp").forward(request, response);
 	}
 
@@ -73,7 +78,7 @@ public class VacunacionAdd extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("error", "Ha ocurrido un error" );
+			request.setAttribute("estado", "Ha ocurrido un error" );
 			request.getRequestDispatcher("/WEB-INF/VacunacionAdd.jsp").forward(request, response);
 		}
 

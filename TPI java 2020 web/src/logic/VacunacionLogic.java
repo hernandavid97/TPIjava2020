@@ -23,7 +23,13 @@ public class VacunacionLogic {
 		return dv.getByMascota(id_mascota);
 	}
 	
+	public LinkedList<Vacunacion> getAll() {
+		return dv.getAll();
+	}
+	
 	public String validaBaja(Vacunacion v) throws Exception {
+		System.out.println("test");
+		System.out.println(dv.getOne(v.getId_vacunacion()));
 		if (dv.getOne(v.getId_vacunacion()) != null) {
 			String b = "";
 			try {

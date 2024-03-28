@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Transito;
+import entities.Usuario;
 import logic.TransitoLogic;
 
 /**
@@ -34,6 +35,12 @@ public class TransitoList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+		if(usuario == null ) {
+			request.getSession().setAttribute("permisos", "Usuario inválido, inicie sesión");
+			response.sendRedirect("Signin");
+			return;
+		}
 		ArrayList<Transito> transitos = TransitoLogic.getAll();
 		request.setAttribute("listaTransitos", transitos);
 		request.getRequestDispatcher("/WEB-INF/TransitoList.jsp").forward(request, response);
