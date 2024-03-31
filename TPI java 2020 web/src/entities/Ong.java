@@ -1,6 +1,6 @@
 package entities;
 
-public class Ong {
+public class Ong { // No está en uso, reemplazado por vacunación
 	private int id_ong;
 	private String nombre;
 	private String cbu;

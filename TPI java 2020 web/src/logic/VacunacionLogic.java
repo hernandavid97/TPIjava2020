@@ -28,8 +28,6 @@ public class VacunacionLogic {
 	}
 	
 	public String validaBaja(Vacunacion v) throws Exception {
-		System.out.println("test");
-		System.out.println(dv.getOne(v.getId_vacunacion()));
 		if (dv.getOne(v.getId_vacunacion()) != null) {
 			String b = "";
 			try {
@@ -44,7 +42,7 @@ public class VacunacionLogic {
 			throw new Exception("Vacunacion no existe");
 	}
 	
-	public String validaModif(Vacunacion nueva, Vacunacion old) throws Exception {
+	public String validaModif(Vacunacion nueva, Vacunacion old) throws Exception { // No se usa, vacunaciones se manjea por B y A
 		try {
 			if (dv.getOne(old.getId_vacunacion()) != null) {
 				return (dv.updateVacunacion(nueva, old));
@@ -61,7 +59,7 @@ public class VacunacionLogic {
 				vacunacion.setId_vacunacion(dv.insertOne(vacunacion));
 				return ("Vacunacion Creada: " + vacunacion.getId_vacunacion());
 			} else
-				throw new Exception("Vacunacion ya existe");
+				throw new Exception("Error creando vacunación, realizar altas sin id");
 		} catch (Exception e) {
 			throw e;
 		}
